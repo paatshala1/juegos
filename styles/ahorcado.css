@@ -2,6 +2,9 @@
     --gris2: #ddc;
 }
 
+body {
+    height: 68rem;
+}
 
 h1, h2 {
     background-color: var(--gris2);
@@ -27,7 +30,7 @@ h1, h2 {
 
 .hang {
     position: relative;
-    margin: 5rem 0.5rem;
+    margin: 1rem 0.5rem;
 }
 
 .hang__img {
@@ -62,7 +65,7 @@ h1, h2 {
 } */
 
 .start {
-    margin: 3rem;
+    margin: 0.5rem 3rem;
     text-align: center;
 }
 
@@ -81,7 +84,7 @@ h1, h2 {
 }
 
 .start__button {
-    margin: 3rem auto;
+    margin: 1rem auto;
     border: transparent;
     border-radius: 1rem;
     color: #fff;
@@ -127,7 +130,7 @@ h1, h2 {
 #guess {
     margin: 0 auto;
     width: 95%;
-    height: 10rem;
+    height: 5rem;
     display: flex;
     justify-content:space-around;
     align-items: flex-start;
