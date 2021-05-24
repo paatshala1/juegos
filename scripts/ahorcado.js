@@ -71,41 +71,46 @@ function begin() {
 
 
 function go() {
-    // imgHangCover.setAttribute('hidden', 'true');
-    // coverNumber++;
-    // imgHangCover.setAttribute('src', `/img/${coverNumber}.jpg`);
 
-    // imgHang2.style.opacity = 1;
-    // setTimeout(updateImg, 500);
+    if (inputWrd.value.length > 1) {
 
-    changeImg();
-
-    btnGo.setAttribute('hidden', 'true');
-    btnTry.removeAttribute('hidden');
-    btnReset.removeAttribute('hidden');
-    wrd = inputWrd.value;
-
-    let fragment = document.createDocumentFragment();
-
-    // console.log('🚀 ~ begin ~ imgHang', imgHang);
-
-    for (let i = 0; i < wrd.length; i++) {
-        let divLetter = document.createElement('DIV');
-        divLetter.setAttribute('id', `letter-${i}`);
-        divLetter.style.color = 'transparent';
-        divLetter.innerHTML = wrd[i];
-        divLetter.classList.add('allLetters');
-        fragment.appendChild(divLetter);
+        
+        changeImg();
+        
+        btnGo.setAttribute('hidden', 'true');
+        btnTry.removeAttribute('hidden');
+        btnReset.removeAttribute('hidden');
+        wrd = inputWrd.value;
+        
+        let fragment = document.createDocumentFragment();
+        
+        // console.log('🚀 ~ begin ~ imgHang', imgHang);
+        
+        for (let i = 0; i < wrd.length; i++) {
+            let divLetter = document.createElement('DIV');
+            divLetter.setAttribute('id', `letter-${i}`);
+            divLetter.style.color = 'transparent';
+            divLetter.innerHTML = wrd[i];
+            divLetter.classList.add('allLetters');
+            fragment.appendChild(divLetter);
+        }
+        
+        divGuess.appendChild(fragment);
+        
+        inputWrd.value = null;
+        inputWrd.placeholder = 'Ingresa una letra';
+        inputWrd.focus();
+        
+        // console.log('🚀 ~ go ~ imgNumber', imgNumber);
+        // console.log('🚀 ~ go ~ imgNumberNext', imgNumberNext);
+    } else {
+        inputWrd.value = null;
+        inputWrd.focus();
+        alert(`
+        Valor incorrecto
+        Tu palabra de tener un
+        mínimo de dos letras`)
     }
-
-    divGuess.appendChild(fragment);
-
-    inputWrd.value = null;
-    inputWrd.placeholder = 'Ingresa una letra';
-    inputWrd.focus();
-    
-    // console.log('🚀 ~ go ~ imgNumber', imgNumber);
-    // console.log('🚀 ~ go ~ imgNumberNext', imgNumberNext);
 }
 
 
@@ -143,12 +148,6 @@ function trying() {
             
         } else {
             wrongs++;
-            // imgHangCover.setAttribute('hidden', 'true');
-            // coverNumber++;
-            // imgHangCover.setAttribute('src', `/img/${coverNumber}.jpg`);
-
-            // imgHang2.style.opacity = 1;
-            // setTimeout(updateImg, 500);
             
             changeImg();
         
@@ -210,6 +209,7 @@ function reset() {
     imgHang.setAttribute('src', `/img/portada.png`);
     imgHang2.setAttribute('src', './img/1.jpg');
     imgHangCover.setAttribute('src', './img/1.jpg');
+    inputWrd.value = null;
 
     initialSetting();
 
