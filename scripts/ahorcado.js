@@ -80,7 +80,7 @@ function go() {
         btnGo.setAttribute('hidden', 'true');
         btnTry.removeAttribute('hidden');
         btnReset.removeAttribute('hidden');
-        wrd = inputWrd.value;
+        wrd = inputWrd.value.toLowerCase();
         
         let fragment = document.createDocumentFragment();
         
@@ -123,7 +123,7 @@ function trying() {
         alert('No has ingresado un valor válido');
     } else {
         counter++;
-        letter = inputWrd.value;
+        letter = inputWrd.value.toLowerCase();
         letters.push(letter);
         // console.log('🚀 ~ trying ~ letters', letters);
         
