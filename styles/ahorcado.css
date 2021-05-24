@@ -1,0 +1,145 @@
+:root {
+    --gris2: #ddc;
+}
+
+
+h1, h2 {
+    background-color: var(--gris2);
+    padding: 1rem;
+}
+
+.back {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    left: 1rem;
+    text-align: center;
+    font-size: 3rem;
+    margin: 0,5rem;
+    background-color: var(--gris2);
+    opacity: 0.4;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.hang {
+    position: relative;
+    margin: 5rem 0.5rem;
+}
+
+.hang__img {
+    object-fit: cover;
+    transition: 0.3s linear all;
+    -webkit-transition: 0.3s linear all;
+    -moz-transition: 0.3s linear all;
+    -ms-transition: 0.3s linear all;
+    -o-transition: 0.3s linear all;
+}
+
+#hangImg2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+#hangImgCover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* .hang__img:hover {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+} */
+
+.start {
+    margin: 3rem;
+    text-align: center;
+}
+
+#start__word {
+    background-color: #ccb;
+    border: none;
+    width: 30rem;
+    height: 4rem;
+    font-size: 2.5rem;
+    text-align: center;
+    color: blue;
+    font-family: 'Special Elite', cursive;
+    font-weight: bolder;
+    letter-spacing: 0.2rem;
+
+}
+
+.start__button {
+    margin: 3rem auto;
+    border: transparent;
+    border-radius: 1rem;
+    color: #fff;
+    opacity: 0.8;
+    width: 10rem;
+    height: 4rem;
+    font-size: 1.7rem;
+    font-weight: bolder;
+    letter-spacing: 0.2rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    transition: 1s ease;
+    -webkit-transition: 1s ease;
+    -moz-transition: 1s ease;
+    -ms-transition: 1s ease;
+    -o-transition: 1s ease;
+}
+
+
+.blue {
+    background-color: #2433aa;
+}
+
+.green {
+    background-color: #0ba812;
+}
+
+.yellow {
+    background-color: #fe1;
+}
+
+.red {
+    background-color: #e22;
+    color: #fff;
+}
+
+.start__button:hover {
+    opacity: 1;
+}
+
+#guess {
+    margin: 0 auto;
+    width: 95%;
+    height: 10rem;
+    display: flex;
+    justify-content:space-around;
+    align-items: flex-start;
+}
+
+.allLetters {
+    text-align: center;
+    width: 2.3rem;
+    margin: 0.5rem;
+    padding-bottom: 0.1rem;
+    font-family: 'Special Elite', cursive;
+    font-size: 4rem;
+    font-weight: bolder;
+    border-bottom: 3px solid #2433aa;
+}

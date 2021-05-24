@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahorcado</title>
+
+    <link rel="stylesheet" href="./styles/normalize.css">
+    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="./styles/ahorcado.css">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com"><!--font-family: 'Special Elite', cursive;-->
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+        
+    <script src="./scripts/ahorcado.js"></script>
+</head>
+
+<body>
+    <a href="./index.html"><div class="back"><</div></a>
+    <h1>Demuestra que eres el mejor</h1>
+    <h2>...si te atreves!!</h2>
+
+    <figure class="hang">
+        <img id="hangImg" class="hang__img" src="./img/portada.png" alt="">
+        <img id="hangImg2" class="hang__img" src="./img/1.jpg" alt="">
+        <img id="hangImgCover" class="hang__img" src="./img/1.jpg" alt="" hidden>
+    </figure>
+
+    <div id="guess" class="guess">
+
+    </div>
+
+    <div class="start">
+        <input id="start__word" type="text">
+        <input id="begin" class="start__button blue" type="button" value="INICIAR">
+        <input id="go" class="start__button yellow" type="button" value="GO" hidden>
+        <input id="try" class="start__button green" type="button" value="TRY" hidden>
+        <input id="reset" class="start__button red" type="button" value="RESET" hidden>
+    </div>
+</body>
+</html>
