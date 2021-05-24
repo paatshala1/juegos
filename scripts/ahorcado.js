@@ -1,6 +1,7 @@
 window.addEventListener('load', iniciar);
 
 var wrongs, rights, counter, wrd, letters, writtenLetters, positions, imgNumber, imgNumberNext, coverNumber
+var hangMoves, myInterval
 
 
 
@@ -15,8 +16,8 @@ function initialSetting() {
     imgNumber = 0;
     imgNumberNext = 1;
     coverNumber = 1;
-
-
+    hangMoves = 0;
+    myInterval = null;
 }
 
 
@@ -29,6 +30,7 @@ function iniciar(event) {
     imgHang = document.getElementById('hangImg');
     imgHang2 = document.getElementById('hangImg2');
     imgHangCover = document.getElementById('hangImgCover');
+    divHanged = document.getElementById('hanged');
 
     btnBegin = document.getElementById('begin');
     btnBegin.addEventListener('click', begin);
@@ -169,23 +171,22 @@ function trying() {
         inputWrd.removeAttribute('placeholder');
         btnReset.focus();
 
-        // CORRER LA FUNCION hanging para "animación" (editar las imágenes para quitar pie)
+        divHanged.removeAttribute('hidden');
+        myInterval = setInterval(hanging, 210);
 
-        alert(`
-        Lo lamento!! Perdiste
-        Agotaste tus ${wrongs} fallos.
+        // alert(`
+        // Lo lamento!! Perdiste
+        // Agotaste tus ${wrongs} fallos.
         
-        Aciertos: ${rights}
-        Errores: ${wrongs}`);
-    }
-
-    if (positions.length >= (wrd.length)) {
-        alert(`
-        Felicidades!!!
-        Has adivinado: ${wrd}
-        Juega de nuevo`);
-        reset();
-    }
+        // Aciertos: ${rights}
+        // Errores: ${wrongs}`);
+    } else if (positions.length >= (wrd.length)) {
+            alert(`
+            Felicidades!!!
+            Has adivinado: ${wrd}
+            Juega de nuevo`);
+            reset();
+        }
 
 }
 
@@ -210,6 +211,7 @@ function reset() {
     imgHang2.setAttribute('src', './img/1.jpg');
     imgHangCover.setAttribute('src', './img/1.jpg');
     inputWrd.value = null;
+    divHanged.setAttribute('hidden', 'true');
 
     initialSetting();
 
@@ -247,7 +249,10 @@ function changeImg() {
 }
 
 function hanging() {
-    for (let i = 11; i <= 16; i++) {
-        changeImg();
+    hangMoves++;
+    activeHanging = document.getElementById(`hanged${hangMoves}`);
+    activeHanging.style.opacity = 1;
+    if (hangMoves == 7) {
+        clearInterval(myInterval);
     }
 }

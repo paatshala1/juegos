@@ -58,13 +58,15 @@ h1, h2 {
     z-index: -1;
 }
 
-/* .hang__img:hover {
-    transform: rotateY(180deg);
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    -ms-transform: rotateY(180deg);
-    -o-transform: rotateY(180deg);
-} */
+.hanged .hanged__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+}
 
 .start {
     margin: 1rem 3rem;
@@ -105,6 +107,7 @@ h1, h2 {
     -moz-transition: 1s ease;
     -ms-transition: 1s ease;
     -o-transition: 1s ease;
+    
 }
 
 
