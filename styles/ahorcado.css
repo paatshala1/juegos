@@ -15,12 +15,13 @@ h1, h2 {
     position: absolute;
     width: 4rem;
     height: 4rem;
-    left: 1rem;
+    top: 0.5rem;
+    left: 0.3rem;
     text-align: center;
     font-size: 3rem;
     margin: 0,5rem;
     background-color: var(--gris2);
-    opacity: 0.4;
+    /* opacity: 0.4; */
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -37,6 +38,17 @@ h1, h2 {
     overflow: hidden;
 }
 
+
+#guess {
+    display: flex;
+    width:99%;
+    height: 5rem;
+    margin: 0 auto;
+    justify-content:space-evenly;
+    align-items: flex-start;
+}
+
+
 .hang__img {
     object-fit: cover;
     transition: 0.3s linear all;
@@ -44,6 +56,10 @@ h1, h2 {
     -moz-transition: 0.3s linear all;
     -ms-transition: 0.3s linear all;
     -o-transition: 0.3s linear all;
+}
+
+#hangImg {
+    position: relative;
 }
 
 #hangImg2 {
@@ -114,7 +130,7 @@ h1, h2 {
 }
 
 .blue {
-    background-color: #2433aa;
+    background-color: #551a8b;
 }
 
 .green {
@@ -122,11 +138,11 @@ h1, h2 {
 }
 
 .yellow {
-    background-color: #fe1;
+    background-color: #f40;
 }
 
 .red {
-    background-color: #e22;
+    background-color: #a02;
     color: #fff;
 }
 
@@ -134,14 +150,6 @@ h1, h2 {
     opacity: 1;
 }
 
-#guess {
-    display: flex;
-    width:99%;
-    height: 5rem;
-    margin: 0 auto;
-    justify-content:space-evenly;
-    align-items: flex-start;
-}
 
 .allLetters {
     text-align: center;
@@ -155,20 +163,61 @@ h1, h2 {
 }
 
 @media screen and (min-width: 768px) {
-    .hang {
-        display: inline-flex;
-        width: 55%;
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: space-evenly;
-    }
 
     .align {
         display: flex;
         align-items: center;
     }
 
+
+    .hang {
+        display: inline;
+        width: 55%;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: space-evenly;
+    }
+
+
     #guess{
         width: 40%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    
+    body {
+        height: 100vh;
+    }
+
+    .myHeader {
+        position: absolute;
+        right: 0;
+        display: block;
+        width: 100%;
+    }
+    
+    .hang {
+        overflow: visible;
+        margin-top: 15vh;
+    }
+
+    .hang__img {
+        max-height: 85vh;
+    }
+
+    #guess {
+        height: 8rem;
+    }
+    
+    #allLetters{
+        width: 3rem;
+        font-size: 4rem;
+    }
+
+    .start {
+        display: inline-block;
+        position: absolute;
+        right: calc(28vw - (30rem / 2));
     }
 }
