@@ -13,15 +13,17 @@ h1, h2 {
 }
 
 .cont {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     margin: 2rem 0;
 }
 
 .cont__game {
+    min-width: 30rem;
+    max-width: 36rem;
+    flex-grow: 1;
     position: relative;
-    flex-wrap: wrap;
     margin: 1rem;
     background-color: #eef;
     border-radius: 1rem;
@@ -32,6 +34,8 @@ h1, h2 {
 }
 
 .cont__gameImg {
+    display: block; /* Elimina espacio bajo la img, esto es por line-height por default de elemento inline */
+    width: 100%; 
     object-fit: cover;
     border-radius: 1rem;
     -webkit-border-radius: 1rem;

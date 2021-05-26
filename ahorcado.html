@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="notranslate" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,31 +21,37 @@
     <h1>Demuestra que eres el mejor</h1>
     <h2>...si te atreves!!</h2>
 
-    <figure class="hang">
-        <img id="hangImg" class="hang__img" src="./img/portada.png" alt="">
-        <img id="hangImg2" class="hang__img" src="./img/1.jpg" alt="">
-        <img id="hangImgCover" class="hang__img" src="./img/1.jpg" alt="" hidden>
-        <div id="hanged" class="hanged" hidden>
-            <img id="hanged1" class="hanged__img" src="./img/12.jpg" alt="">
-            <img id="hanged2" class="hanged__img" src="./img/13.jpg" alt="">
-            <img id="hanged3" class="hanged__img" src="./img/14.jpg" alt="">
-            <img id="hanged4" class="hanged__img" src="./img/15.jpg" alt="">
-            <img id="hanged5" class="hanged__img" src="./img/16.jpg" alt="">
-            <img id="hanged6" class="hanged__img" src="./img/17.jpg" alt="">
-            <img id="hanged7" class="hanged__img" src="./img/18.jpg" alt="">
+    <div class="align">
+        <figure class=" hang">
+            <img id="hangImg" class="hang__img" src="./img/portada.png" alt="">
+            <img id="hangImg2" class="hang__img" src="./img/1.jpg" alt="">
+            <img id="hangImgCover" class="hang__img" src="./img/1.jpg" alt="" hidden>
+            <div id="hanged" class="hanged" hidden>
+                <img id="hanged1" class="hanged__img" src="./img/12.jpg" alt="">
+                <img id="hanged2" class="hanged__img" src="./img/13.jpg" alt="">
+                <img id="hanged3" class="hanged__img" src="./img/14.jpg" alt="">
+                <img id="hanged4" class="hanged__img" src="./img/15.jpg" alt="">
+                <img id="hanged5" class="hanged__img" src="./img/16.jpg" alt="">
+                <img id="hanged6" class="hanged__img" src="./img/17.jpg" alt="">
+                <img id="hanged7" class="hanged__img" src="./img/18.jpg" alt="">
+            </div>
+        </figure>
+
+
+        <div id="guess" class="guess">
+
         </div>
-    </figure>
-
-    <div id="guess" class="guess">
-
     </div>
 
     <div class="start">
         <input id="start__word" type="text">
-        <input id="begin" class="start__button blue" type="button" value="INICIAR">
-        <input id="go" class="start__button yellow" type="button" value="GO" hidden>
-        <input id="try" class="start__button green" type="button" value="TRY" hidden>
-        <input id="reset" class="start__button red" type="button" value="RESET" hidden>
+        <div class="buttons">
+            <input id="begin" class="start__button blue" type="button" value="INICIAR">
+            <input id="go" class="start__button yellow" type="button" value="GO" hidden>
+            <input id="try" class="start__button green" type="button" value="TRY" hidden>
+            <input id="reset" class="start__button red" type="button" value="RESET" hidden>
+        </div>
     </div>
+
 </body>
 </html>
