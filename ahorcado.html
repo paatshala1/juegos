@@ -15,20 +15,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com"><!--font-family: 'Special Elite', cursive;-->
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
         
-    <script src="https://kit.fontawesome.com/62ea397d3a.js"></script>
-    
+    <script src="https://kit.fontawesome.com/1a73436153.js" crossorigin="anonymous"></script>
+
     <script src="./scripts/ahorcado.js"></script>
 </head>
 
 <body>
-    <div class="myHeader">
-        <a class="back" href="./index.html"><i class="fas fa-arrow-left"></i></a>
-        <h1>Demuestra que eres el mejor</h1>
-        <h2>...si te atreves!!</h2>
-    </div>
-
     <div class="align">
-        <figure class=" hang">
+        <div class="myHeader">
+            <a class="back" href="./index.html"><i class="fas fa-arrow-left"></i></a>
+            <h1>Demuestra que eres el mejor</h1>
+            <h2>...si te atreves!!</h2>
+        </div>
+
+        <figure class="hang">
             <img id="hangImg" class="hang__img" src="./img/portada.png" alt="">
             <img id="hangImg2" class="hang__img" src="./img/1.jpg" alt="">
             <img id="hangImgCover" class="hang__img" src="./img/1.jpg" alt="" hidden>
@@ -45,15 +45,15 @@
 
 
         <div id="guess" class="guess"></div>
-    </div>
-
-    <div class="start">
-        <input id="start__word" type="text">
-        <div class="buttons">
-            <input id="begin" class="start__button blue" type="button" value="INICIAR">
-            <input id="go" class="start__button yellow" type="button" value="GO" hidden>
-            <input id="try" class="start__button green" type="button" value="TRY" hidden>
-            <input id="reset" class="start__button red" type="button" value="RESET" hidden>
+        
+        <div class="start">
+            <input id="start__word" type="text">
+            <div class="buttons">
+                <input id="begin" class="start__button blue" type="button" value="INICIAR">
+                <input id="go" class="start__button yellow" type="button" value="GO" hidden>
+                <input id="try" class="start__button green" type="button" value="TRY" hidden>
+                <input id="reset" class="start__button red" type="button" value="RESET" hidden>
+            </div>
         </div>
     </div>
 

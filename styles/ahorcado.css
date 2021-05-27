@@ -3,7 +3,7 @@
 }
 
 body {
-    height: 68rem;
+    max-height: 100vh;
 }
 
 h1, h2 {
@@ -29,12 +29,24 @@ h1, h2 {
     -o-border-radius: 50%;
 }
 
+.myHeader {
+    height: 20vh;
+}
+
+.align {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10vh 45vh 10vh 1fr;
+    margin: 0 auto;
+    }
+
 .hang {
-    display: flex;
-    width: 96%;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
     position: relative;
     margin: 2% 2%;
-    max-height: 60vh;
+    max-height: calc(100vh - 10rem);
     overflow: hidden;
 }
 
@@ -162,62 +174,42 @@ h1, h2 {
     border-bottom: 3px solid #2433aa;
 }
 
-@media screen and (min-width: 768px) {
 
-    .align {
-        display: flex;
-        align-items: center;
-    }
+@media screen and (min-width: 768px) and (max-height: 400px){
 
-
-    .hang {
-        display: inline;
-        width: 55%;
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: space-evenly;
-    }
-
-
-    #guess{
-        width: 40%;
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    
     body {
-        height: 100vh;
-    }
-
-    .myHeader {
-        position: absolute;
-        right: 0;
-        display: block;
-        width: 100%;
-    }
-    
-    .hang {
-        overflow: visible;
-        margin-top: 15vh;
+        max-height: 75vh;
     }
 
     .hang__img {
-        max-height: 85vh;
+        object-fit:fill;
+        height: 100%;
     }
 
-    #guess {
-        height: 8rem;
+    .align {
+        grid-template-columns: 80vh 1fr;
+        grid-template-rows: 23vh 40vh 1fr;
     }
-    
-    #allLetters{
-        width: 3rem;
-        font-size: 4rem;
+
+    .myHeader {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .hang {
+        margin: 0;
+        grid-column: 1 / 2;
+        grid-row: 2 / span 2;
+    }
+
+    .guess {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
     }
 
     .start {
-        display: inline-block;
-        position: absolute;
-        right: calc(28vw - (30rem / 2));
+        grid-column: 2 / 3;
+        grid-row: 3 / 4;
     }
+
 }

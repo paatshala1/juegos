@@ -24,6 +24,12 @@ function initialSetting() {
 
 function iniciar(event) {
 
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    // const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    // const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    // alert(`${vw} x ${vh}`);
+
     initialSetting();
 
     divGuess = document.getElementById('guess');
@@ -211,6 +217,8 @@ function reset() {
     imgHang2.setAttribute('src', './img/1.jpg');
     imgHangCover.setAttribute('src', './img/1.jpg');
     inputWrd.value = null;
+    
+    hideHanged();
     divHanged.setAttribute('hidden', 'true');
 
     initialSetting();
@@ -254,5 +262,12 @@ function hanging() {
     activeHanging.style.opacity = 1;
     if (hangMoves == 7) {
         clearInterval(myInterval);
+    }
+}
+
+function hideHanged() {
+    for (let i = 1; i <= 7; i++) {
+        eachHanging = document.getElementById(`hanged${i}`);
+        eachHanging.style.opacity = 0;
     }
 }
