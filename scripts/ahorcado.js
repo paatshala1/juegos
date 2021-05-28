@@ -31,6 +31,9 @@ function iniciar(event) {
     // const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     // const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     // alert(`${vw} x ${vh}`);
+
+    let resolution = window.devicePixelRatio;
+    alert(resolution);
   
     updateSize();
 
@@ -290,7 +293,7 @@ function updateSize() {
     document.documentElement.style.setProperty('--vh', `${actualVh}px`);
     document.documentElement.style.setProperty('--vw', `${actualVw}px`);
 
-    // alert(`
-    // vw: ${actualVw}
-    // vh: ${actualVh}`);
+    alert(`
+    vw: ${actualVw}
+    vh: ${actualVh}`);
 }

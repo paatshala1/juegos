@@ -8,6 +8,7 @@ body {
 }
 
 h1 {
+    line-height: calc(var(--vh) * 8);
     margin: 0 auto;
     background-color: var(--gris2);
     padding: 1rem;

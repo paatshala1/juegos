@@ -1,5 +1,5 @@
 
-@media screen and (min-width: 768px) and (max-height: 400px){
+@media screen and (min-width: 768px) and (max-height: 400px) {
 
     body {
         max-height: calc(var(--vh) * 75);
