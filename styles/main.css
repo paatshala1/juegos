@@ -1,15 +1,13 @@
 
 
-
-
-
 body {
     background-color: #ccb;
 }
 
 h1, h2 {
-    margin: 0rem auto;
+    margin: 0.5rem auto;
     text-align: center;
+    font-size: 3rem;
 }
 
 .cont {

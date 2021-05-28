@@ -1,7 +1,9 @@
 window.addEventListener('load', iniciar);
+window.addEventListener('resize', updateSize);
 
 var wrongs, rights, counter, wrd, letters, writtenLetters, positions, imgNumber, imgNumberNext, coverNumber
 var hangMoves, myInterval
+
 
 
 
@@ -24,11 +26,13 @@ function initialSetting() {
 
 function iniciar(event) {
 
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
+    // const vw = window.innerWidth;
+    // const vh = window.innerHeight;
     // const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     // const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    alert(`${vw} x ${vh}`);
+    // alert(`${vw} x ${vh}`);
+  
+    updateSize();
 
     initialSetting();
 
@@ -128,7 +132,9 @@ function trying() {
     let letter = null;
 
     if (inputWrd.value.length != 1) {
-        alert('No has ingresado un valor válido');
+        alert(`
+        Valor inválido,
+        debe ser una letra`);
     } else {
         counter++;
         letter = inputWrd.value.toLowerCase();
@@ -148,9 +154,14 @@ function trying() {
                         positions.push(i);
                         // console.log('🚀  ~ trying ~ positions', positions);
                         // console.log('🚀 ~ trying ~ writtenLetters', writtenLetters);
-                    } else {
+                    }/*  else {
                         continue;
-                    }
+                    } */
+                }
+                
+                for (i of positions) {
+                let rightLetter = document.getElementById(`letter-${i}`);
+                    rightLetter.style.color = '#000000';
                 }
             }
             
@@ -163,10 +174,6 @@ function trying() {
             // console.log('🚀  ~ trying ~ wrongs', wrongs);
         }
 
-        for (i of positions) {
-            let rightLetter = document.getElementById(`letter-${i}`);
-            rightLetter.style.color = '#000000';
-        }
     }
     
     inputWrd.value = null;
@@ -222,9 +229,9 @@ function reset() {
     divHanged.setAttribute('hidden', 'true');
 
     initialSetting();
-
+    
+    btnBegin.focus();
 }
-
 
 
 function updateImg() {
@@ -240,11 +247,9 @@ function updateImg() {
 }
 
 
-
 function unhide() {
     imgHang2.removeAttribute('hidden');
 }
-
 
 
 function changeImg() {
@@ -256,18 +261,36 @@ function changeImg() {
     setTimeout(updateImg, 500);
 }
 
+
 function hanging() {
     hangMoves++;
     activeHanging = document.getElementById(`hanged${hangMoves}`);
     activeHanging.style.opacity = 1;
     if (hangMoves == 7) {
         clearInterval(myInterval);
+        alert(`
+        Lo sentimos...
+        intenta de nuevo`);
     }
 }
+
 
 function hideHanged() {
     for (let i = 1; i <= 7; i++) {
         eachHanging = document.getElementById(`hanged${i}`);
         eachHanging.style.opacity = 0;
     }
+}
+
+
+function updateSize() {
+    let actualVw = window.innerWidth * 0.01;
+    let actualVh = window.innerHeight * 0.01;
+
+    document.documentElement.style.setProperty('--vh', `${actualVh}px`);
+    document.documentElement.style.setProperty('--vw', `${actualVw}px`);
+
+    // alert(`
+    // vw: ${actualVw}
+    // vh: ${actualVh}`);
 }
