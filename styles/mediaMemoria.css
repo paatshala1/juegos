@@ -1,0 +1,19 @@
+@media screen and (orientation: portrait) {
+    .gridContainer {
+        transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+    }
+}
+
+@media screen and (orientation: landscape) {
+    .gridContainer {
+        transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+    }
+}

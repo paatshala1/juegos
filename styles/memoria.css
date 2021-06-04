@@ -1,0 +1,103 @@
+
+body {
+    background-color: #bbf;
+}
+
+
+
+.gridContainer {
+    justify-content: center;
+    display: grid;
+    margin: calc(var(--vh) * 1);
+    background-color: #bbf;
+    grid-template-columns: repeat(5, calc(var(--vw) * 19));
+    grid-template-rows: repeat(5, calc(var(--vh) * 19));
+    gap: 0.3rem;
+}
+
+
+.card {
+    width: calc(var(--vw) * 19);
+    height: calc(var(--vh) * 19);
+    overflow: hidden;
+    position: relative;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    transform-style: preserve-3d;
+}
+
+
+.frontCard, .backCard {
+    height: 100%;
+    width: 100%;
+    display: block;
+    transition: all ease 0.5s;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    -ms-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
+    transform-style: preserve-3d;
+}
+
+.frontCard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: perspective(600px) rotateY(-180deg);
+    -webkit-transform: perspective(600px) rotateY(-180deg);
+    -moz-transform: perspective(600px) rotateY(-180deg);
+    -ms-transform: perspective(600px) rotateY(-180deg);
+    -o-transform: perspective(600px) rotateY(-180deg);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+}
+
+
+.backCard {
+    transform: perspective(600px) rotateY(0deg);
+    -webkit-transform: perspective(600px) rotateY(0deg);
+    -moz-transform: perspective(600px) rotateY(0deg);
+    -ms-transform: perspective(600px) rotateY(0deg);
+    -o-transform: perspective(600px) rotateY(0deg);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+}
+
+
+/* .card:hover .backCard {
+    transform: perspective(600px) rotateY(180deg);
+    -webkit-transform: perspective(600px) rotateY(180deg);
+    -moz-transform: perspective(600px) rotateY(180deg);
+    -ms-transform: perspective(600px) rotateY(180deg);
+    -o-transform: perspective(600px) rotateY(180deg);
+}
+
+
+.card:hover .frontCard {
+    transform: perspective(600px) rotateY(0deg);
+    -webkit-transform: perspective(600px) rotateY(0deg);
+    -moz-transform: perspective(600px) rotateY(0deg);
+    -ms-transform: perspective(600px) rotateY(0deg);
+    -o-transform: perspective(600px) rotateY(0deg);
+} */
+
+
+#btn {
+    font-size: 2rem;
+    background-color: #55f;
+    color: #ddf;
+    border: none;
+}
+
+
+#btn:hover {
+    font-weight: bolder;
+    background-color: #44e;
+}
+
+

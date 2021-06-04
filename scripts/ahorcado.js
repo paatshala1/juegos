@@ -32,8 +32,8 @@ function iniciar(event) {
     // const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
     // alert(`${vw} x ${vh}`);
 
-    let resolution = window.devicePixelRatio;
-    alert(resolution);
+    // let resolution = window.devicePixelRatio;
+    // alert(resolution);
   
     updateSize();
 
@@ -223,9 +223,9 @@ function reset() {
         }
     }
 
-    imgHang.setAttribute('src', `/img/portada.png`);
-    imgHang2.setAttribute('src', './img/1.jpg');
-    imgHangCover.setAttribute('src', './img/1.jpg');
+    imgHang.setAttribute('src', `/img/Ahorcado/portada.png`);
+    imgHang2.setAttribute('src', './img/Ahorcado/1.jpg');
+    imgHangCover.setAttribute('src', './img/Ahorcado/1.jpg');
     inputWrd.value = null;
     
     hideHanged();
@@ -242,10 +242,10 @@ function updateImg() {
     imgNumber++;
     imgNumberNext++
 
-    imgHang.setAttribute('src', `/img/${imgNumber}.jpg`);
+    imgHang.setAttribute('src', `/img/Ahorcado/${imgNumber}.jpg`);
     imgHang2.style.opacity = 0;
     imgHang2.setAttribute('hidden', 'true');
-    imgHang2.setAttribute('src', `/img/${imgNumberNext}.jpg`);
+    imgHang2.setAttribute('src', `/img/Ahorcado/${imgNumberNext}.jpg`);
     setTimeout(unhide, 500);
 }
 
@@ -258,7 +258,7 @@ function unhide() {
 function changeImg() {
     imgHangCover.setAttribute('hidden', 'true');
     coverNumber++;
-    imgHangCover.setAttribute('src', `/img/${coverNumber}.jpg`);
+    imgHangCover.setAttribute('src', `/img/Ahorcado/${coverNumber}.jpg`);
 
     imgHang2.style.opacity = 1;
     setTimeout(updateImg, 500);
@@ -293,7 +293,7 @@ function updateSize() {
     document.documentElement.style.setProperty('--vh', `${actualVh}px`);
     document.documentElement.style.setProperty('--vw', `${actualVw}px`);
 
-    alert(`
-    vw: ${actualVw}
-    vh: ${actualVh}`);
+    // alert(`
+    // vw: ${actualVw}
+    // vh: ${actualVh}`);
 }
