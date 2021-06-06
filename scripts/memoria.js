@@ -2,35 +2,48 @@ window.addEventListener('load', iniciar);
 window.addEventListener('resize', updateSize);
 
 var btn;
+var flippedCards, flippedOneCard,flippedTwoCard, flippedOneFront, flippedTwoFront, pairs;
+var actualPlayer, player1, player2, turn, pairsPlayer1, pairsPlayer2;
+var grill, shuffled;
 
 
 // TIMEOUT PARA QUE DE TIEMPO A QUE CARGUE LA PÁGINA ANTES DE CREAR ELEMENTOS
 setTimeout(createElements, 1500);
 
 function createElements() {
-    cardBack = document.getElementsByClassName('backCard');
-    cardFront = document.getElementsByClassName('frontCard');
+    grill = document.getElementById('grill');
+    cards = document.getElementsByClassName('card');
+    cardsBack = document.getElementsByClassName('backCard');
+    cardsFront = document.getElementsByClassName('frontCard');
     
-    for (let i = 0; i < cardBack.length; i++) {
-        window['jsCardBack' + i] = cardBack[i];
-        window['jsCardFront' + i] = cardFront[i];        
+    for (let i = 0; i < cards.length; i++) {
+        window['jsC' + i] = cards[i];
+        window['jsB' + i] = cardsBack[i];
+        window['jsF' + i] = cardsFront[i];
+        
+        window['jsC' + i].addEventListener('click', select);
+        
     }
+    
+    shuffled = [];
+    shuffleCards();
 }
 
-// setTimeout(info, 1600);
 
-// function info() {
-//     alert(`
-//     ID Primer elemento: ${jsCardBack0.getAttribute('id')}
-//     ID Segundo element: ${jsCardBack1.getAttribute('id')}
-//     `);
-// }
+letsBegin = confirm(`Iniciamos?`);
 
-
-// TRUCO PARA QUE DE TIEMPO A QUE CARGUEN ELEMENTOS Y SE CREEN TODOS LOS OBJETOS js PARA LOS HTML
-alert('Que inicie la partida!!');
-
-
+if (letsBegin) {
+    
+    player1 = prompt('Nombre de jugador 1:');
+    player2 = prompt('Nombre de jugador 2:');
+    
+    // TRUCO PARA QUE DE TIEMPO A QUE CARGUEN ELEMENTOS Y SE CREEN TODOS LOS OBJETOS js PARA LOS HTML
+    alert(`
+    Perfecto...iniciemos!!!
+    El primer turno es de ${player1}
+    `);
+    
+}
 
 function iniciar(event) {
     updateSize();
@@ -40,33 +53,13 @@ function iniciar(event) {
     btn = document.getElementById('btn');
     btn.addEventListener('click', restart);
 
-    c1 = document.getElementById('c1');
-    c1.addEventListener('click', ()=> {alert('Seleccionada la primera tarjeta')});
-
-    c2 = document.getElementById('c2');
-    c2.addEventListener('click', ()=> {alert('Seleccionada la segunda tarjeta')});
-
-
-
-    test = document.getElementById('fzn0');
-
-
-
-
+    flippedCards = 0;
+    pairs = 0;
+    pairsPlayer1 = 0;
+    pairsPlayer2 = 0;
+    actualPlayer = player1;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function updateSize() {
@@ -83,3 +76,155 @@ function restart() {
 }
 
 
+function select(event) {
+    if (flippedCards >= 2) {
+
+        alert('No puedes seleccionar más de dos tarjetas');
+
+    } else {
+
+        let pos = event.target.getAttribute('id').toString();
+        pos = pos.slice(1);
+        flippedCards++;
+
+        flip(pos);
+        
+        if (flippedCards == 1) {
+
+            flippedOneCard = window['jsC' + pos];
+            flippedOneFront  = window['jsF' + pos];
+            flippedOneBack  = window['jsB' + pos];
+            
+            flippedOneCard.style.pointerEvents = 'none';
+        
+        } else {
+
+            flippedTwoCard = window['jsC' + pos];
+            flippedTwoFront = window['jsF' + pos];
+            flippedTwoBack = window['jsB' + pos];
+
+            flippedTwoCard.style.pointerEvents = 'none';
+
+            if (flippedOneFront.getAttribute('src') == flippedTwoFront.getAttribute('src')) {
+
+                if (actualPlayer == player1) {
+                    pairsPlayer1++;
+                } else {
+                    pairsPlayer2++;
+                }
+
+                setTimeout(matched, 1000);
+                flippedCards = 0;
+
+
+
+                if ((pairsPlayer1 + pairsPlayer2) == 12) {
+
+                    setTimeout(winner, 1200);
+                
+                    // AQUÍ ESTABA LA EVALUACIÓN DEL GANADOR
+                }
+
+            } else {
+                
+                setTimeout(flipOver, 1500);
+                
+                if (actualPlayer == player1) {
+                    actualPlayer = player2;
+                    alert(`Turno de ${player2}`);
+                } else {
+                    actualPlayer = player1;
+                    alert(`Turno de ${player1}`);
+                }
+    
+            }
+        }
+        
+        
+    }
+}
+
+
+function flip(myPos) {
+
+    window['jsB' + myPos].style.transform = 'perspective(600px) rotateY(180deg)';
+    // window['jsB' + myPos].style.MozUserSelect = 'none';
+
+    window['jsF' + myPos].style.transform = 'perspective(600px) rotateY(0deg)';
+
+}
+
+
+function flipOver() {
+
+    flippedCards = 0;
+
+    flippedOneBack.style.transform = 'perspective(600px) rotateY(0deg)';
+    flippedTwoBack.style.transform = 'perspective(600px) rotateY(0deg)';
+    
+    flippedOneFront.style.transform = 'perspective(600px) rotateY(-180deg)';
+    flippedTwoFront.style.transform = 'perspective(600px) rotateY(-180deg)';
+
+    flippedOneCard.style.pointerEvents = 'auto';
+    flippedTwoCard.style.pointerEvents = 'auto';
+
+}
+
+
+function matched() {
+    
+    flippedOneBack.style.visibility = 'hidden';
+    flippedTwoBack.style.visibility = 'hidden';
+
+    flippedOneFront.style.transform = 'perspective(600px) rotateY(90deg)';
+    flippedTwoFront.style.transform = 'perspective(600px) rotateY(90deg)';
+
+    pairs++;
+    console.log(pairs);
+}
+
+
+function winner() {
+    
+    if (pairsPlayer1 == pairsPlayer2) {
+        alert(`
+        Hubo un empate!!!
+        tendrán que jugar el desempate`)
+    } else if (pairsPlayer1 > pairsPlayer2) {
+        alert(`Felicidades ${player1} has ganado`);
+    } else {
+        alert(`Felicidades ${player2} has ganado`);
+    }
+    
+}
+
+function shuffleCards() {
+    qtyCards = cards.length;
+    qtyPairs = qtyCards / 2;
+    
+    do {
+        myRadom = Math.round(Math.random() * ((qtyCards - 1) + 0));
+        // console.log('🚀 ~ shuffleCards ~ myRadom', myRadom);
+        
+        if (shuffled.includes(myRadom)) {
+            continue;
+        } else {
+            shuffled.push(myRadom);
+            // console.log('🚀 ~ shuffleCards ~ shuffled', shuffled);
+        }
+    
+    } while (shuffled.length < 24);
+    
+    for (let i = 0; i < shuffled.length; i+=2) {
+        path = `./img/Frozen/fzn${i/2+1}.jpeg`;
+        // console.log('🚀 ~ shuffleCards ~ path', path);
+
+        pos1 = shuffled[i];
+        // console.log('🚀 ~ shuffleCards ~ pos1', pos1);
+        pos2 = shuffled[i+1];
+        // console.log('🚀 ~ shuffleCards ~ pos2', pos2);
+
+        cardsFront[pos1].setAttribute('src', path);
+        cardsFront[pos2].setAttribute('src', path);
+    }
+}

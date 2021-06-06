@@ -10,14 +10,32 @@ body {
     display: grid;
     margin: calc(var(--vh) * 1);
     background-color: #bbf;
-    grid-template-columns: repeat(5, calc(var(--vw) * 19));
+    grid-template-columns:  10% repeat(5, calc(var(--vw) * 17.5));
     grid-template-rows: repeat(5, calc(var(--vh) * 19));
     gap: 0.3rem;
 }
 
 
+#back {
+    grid-row: 1;
+    grid-column: 1 / 2;
+}
+
+
+#player1 {
+    grid-row: 2 / 4;
+    grid-column: 1 / 2;
+}
+
+
+#player2 {
+    grid-row: 4 / 6;
+    grid-column: 1 / 2;
+}
+
+
 .card {
-    width: calc(var(--vw) * 19);
+    width: calc(var(--vw) * 17.5);
     height: calc(var(--vh) * 19);
     overflow: hidden;
     position: relative;
@@ -69,7 +87,7 @@ body {
 }
 
 
-/* .card:hover .backCard {
+.flipBackCard {
     transform: perspective(600px) rotateY(180deg);
     -webkit-transform: perspective(600px) rotateY(180deg);
     -moz-transform: perspective(600px) rotateY(180deg);
@@ -78,13 +96,13 @@ body {
 }
 
 
-.card:hover .frontCard {
+.flipFrontCard {
     transform: perspective(600px) rotateY(0deg);
     -webkit-transform: perspective(600px) rotateY(0deg);
     -moz-transform: perspective(600px) rotateY(0deg);
     -ms-transform: perspective(600px) rotateY(0deg);
     -o-transform: perspective(600px) rotateY(0deg);
-} */
+}
 
 
 #btn {
@@ -92,6 +110,7 @@ body {
     background-color: #55f;
     color: #ddf;
     border: none;
+    
 }
 
 
