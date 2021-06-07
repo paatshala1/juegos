@@ -1,7 +1,7 @@
 window.addEventListener('load', iniciar);
 window.addEventListener('resize', updateSize);
 
-var btn, back, infoPlayer1, infoPlayer2;
+var btn, back, namePlayer1, namePlayer2, scorePlayer1, scorePlayer2;
 var flippedCards, flippedOneCard,flippedTwoCard, flippedOneFront, flippedTwoFront, pairs;
 var actualPlayer, player1, player2, turn, pairsPlayer1, pairsPlayer2;
 var grill, shuffled;
@@ -11,11 +11,14 @@ var grill, shuffled;
 setTimeout(createElements, 1500);
 
 function createElements() {
+    
+    getPlayers();
+
     grill = document.getElementById('grill');
     cards = document.getElementsByClassName('card');
     cardsBack = document.getElementsByClassName('backCard');
     cardsFront = document.getElementsByClassName('frontCard');
-    
+
     for (let i = 0; i < cards.length; i++) {
         window['jsC' + i] = cards[i];
         window['jsB' + i] = cardsBack[i];
@@ -27,25 +30,45 @@ function createElements() {
     
     shuffled = [];
     shuffleCards();
+
 }
 
 
-letsBegin = confirm(`Iniciamos?`);
-
-if (letsBegin) {
+function getPlayers() {
     
-    player1 = prompt('Nombre de jugador 1:');
-    player2 = prompt('Nombre de jugador 2:');
+    letsBegin = confirm(`Iniciamos?`);
     
-    // TRUCO PARA QUE DE TIEMPO A QUE CARGUEN ELEMENTOS Y SE CREEN TODOS LOS OBJETOS js PARA LOS HTML
-    alert(`
-    Perfecto...iniciemos!!!
-    El primer turno es de ${player1}
-    `);
+    if (letsBegin) {
+        
+        player1 = prompt('Nombre de jugador 1:');
+        player2 = prompt('Nombre de jugador 2:');
+        actualPlayer = player1;
+        
+        // TRUCO PARA QUE DE TIEMPO A QUE CARGUEN ELEMENTOS Y SE CREEN TODOS LOS OBJETOS js PARA LOS HTML
+        alert(`
+        Perfecto...iniciemos!!!
+        El primer turno es de ${player1}
+        `);
+        
+        namePlayer1 = document.getElementById('player1');
+        scorePlayer1 = document.getElementById('player1Points');
+        
+        namePlayer2 = document.getElementById('player2');
+        scorePlayer2 = document.getElementById('player2Points');
 
-    // infoPlayer1.style.innerHTML = player1;
-    // infoPlayer2.style.innerHTML = player2;
+        namePlayer1.textContent = player1;
+        scorePlayer1.textContent = '0';
+        
+        namePlayer2.textContent = player2;
+        scorePlayer2.textContent = '0';
 
+
+        
+    } else {
+
+        window.location.href = "./index.html";   
+
+    }
 }
 
 
@@ -60,15 +83,12 @@ function iniciar(event) {
     back = document.getElementById('back');
     back.addEventListener('click', goBack);
 
-    infoPlayer1 = document.getElementById('player1');
-    infoPlayer2 = document.getElementById('player2');
 
 
     flippedCards = 0;
     pairs = 0;
     pairsPlayer1 = 0;
     pairsPlayer2 = 0;
-    actualPlayer = player1;
 
 }
 
@@ -120,8 +140,10 @@ function select(event) {
 
                 if (actualPlayer == player1) {
                     pairsPlayer1++;
+                    scorePlayer1.innerHTML = pairsPlayer1;
                 } else {
                     pairsPlayer2++;
+                    scorePlayer2.innerHTML = pairsPlayer2;
                 }
 
                 setTimeout(matched, 1000);
@@ -139,15 +161,6 @@ function select(event) {
             } else {
                 
                 setTimeout(flipOver, 1500);
-
-                
-                // if (actualPlayer == player1) {
-                //     actualPlayer = player2;
-                //     alert(`${player2} es tu turno`);
-                // } else {
-                //     actualPlayer = player1;
-                //     alert(`${player1} es tu turno`);
-                // }
     
             }
         }
@@ -188,10 +201,14 @@ function flipOver() {
 function assignTurn() {
     if (actualPlayer == player1) {
         actualPlayer = player2;
-        alert(`${player2} es tu turno`);
+        alert(`
+        ${player2},
+         es tu turno`);
     } else {
         actualPlayer = player1;
-        alert(`${player1} es tu turno`);
+        alert(`
+        ${player1},
+         es tu turno`);
     }
 }
 

@@ -10,9 +10,9 @@ body {
     display: grid;
     margin: calc(var(--vh) * 1);
     background-color: #bbf;
-    grid-template-columns:  10% repeat(5, calc(var(--vw) * 17.5));
-    grid-template-rows: repeat(5, calc(var(--vh) * 19));
-    gap: 0.3rem;
+    grid-template-columns:  repeat(6, calc(var(--vw) * 16));
+    grid-template-rows: 10% repeat(4, calc(var(--vh) * 22.1));
+    gap: 0.4rem;
 }
 
 
@@ -26,8 +26,8 @@ body {
     position: absolute;
     width: 4rem;
     height: 4rem;
-    top: 0.5rem;
-    left: 0.3rem;
+    top: 1%;
+    left: 2.5%;
     text-align: center;
     font-size: 3rem;
     margin: 0,5rem;
@@ -41,21 +41,66 @@ body {
 }
 
 
+.bar {
+    text-align: center;
+    align-self: center;
+    font-size: 2rem;
+    font-weight: bolder;
+    min-height: 10%;
+}
+
+
+.points {
+    font-size: 3rem;
+    font-weight: bolder;
+    color: #067506;
+}
+
+
+#p1Div {
+    display: flex;
+    justify-content: space-around;
+    grid-row: 1;
+    grid-column: 2 / 4;
+}
+
+
+#p2Div {
+    display: flex;
+    justify-content: space-around;
+    grid-row: 1;
+    grid-column: 4 / 6;
+}
+
 #player1 {
-    grid-row: 2 / 4;
-    grid-column: 1 / 2;
+    justify-self: flex-end;
 }
 
 
 #player2 {
-    grid-row: 4 / 6;
-    grid-column: 1 / 2;
+    justify-self: flex-end;
+}
+
+
+#btn {
+    grid-row: 1;
+    grid-column: 6 / 7;
+    height: calc(var(--vh) * 7);
+    font-size: 2rem;
+    background-color: #55f;
+    color: #ddf;
+    border: none;
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
 }
 
 
 .card {
-    width: calc(var(--vw) * 17.5);
-    height: calc(var(--vh) * 19);
+    width: calc(var(--vw) * 16);
+    height: calc(var(--vh) * 22.1);
     overflow: hidden;
     position: relative;
     border-radius: 0.5rem;
@@ -124,17 +169,6 @@ body {
 }
 
 
-#btn {
-    font-size: 2rem;
-    background-color: #55f;
-    color: #ddf;
-    border: none;
-    border-radius: 0.5rem;
-    -webkit-border-radius: 0.5rem;
-    -moz-border-radius: 0.5rem;
-    -ms-border-radius: 0.5rem;
-    -o-border-radius: 0.5rem;
-}
 
 
 #btn:hover {

@@ -33,7 +33,8 @@ h1, h2 {
 
 .cont__gameImg {
     display: block; /* Elimina espacio bajo la img, esto es por line-height por default de elemento inline */
-    width: 100%; 
+    width: 100%;
+    height: 100%; 
     object-fit: cover;
     border-radius: 1rem;
     -webkit-border-radius: 1rem;
