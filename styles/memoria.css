@@ -22,6 +22,25 @@ body {
 }
 
 
+.back {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    top: 0.5rem;
+    left: 0.3rem;
+    text-align: center;
+    font-size: 3rem;
+    margin: 0,5rem;
+    background-color: var(--gris2);
+    /* opacity: 0.4; */
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+
 #player1 {
     grid-row: 2 / 4;
     grid-column: 1 / 2;
@@ -110,7 +129,11 @@ body {
     background-color: #55f;
     color: #ddf;
     border: none;
-    
+    border-radius: 0.5rem;
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
 }
 
 

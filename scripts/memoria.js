@@ -1,7 +1,7 @@
 window.addEventListener('load', iniciar);
 window.addEventListener('resize', updateSize);
 
-var btn;
+var btn, back, infoPlayer1, infoPlayer2;
 var flippedCards, flippedOneCard,flippedTwoCard, flippedOneFront, flippedTwoFront, pairs;
 var actualPlayer, player1, player2, turn, pairsPlayer1, pairsPlayer2;
 var grill, shuffled;
@@ -42,8 +42,12 @@ if (letsBegin) {
     Perfecto...iniciemos!!!
     El primer turno es de ${player1}
     `);
-    
+
+    // infoPlayer1.style.innerHTML = player1;
+    // infoPlayer2.style.innerHTML = player2;
+
 }
+
 
 function iniciar(event) {
     updateSize();
@@ -52,6 +56,13 @@ function iniciar(event) {
 
     btn = document.getElementById('btn');
     btn.addEventListener('click', restart);
+
+    back = document.getElementById('back');
+    back.addEventListener('click', goBack);
+
+    infoPlayer1 = document.getElementById('player1');
+    infoPlayer2 = document.getElementById('player2');
+
 
     flippedCards = 0;
     pairs = 0;
@@ -128,14 +139,15 @@ function select(event) {
             } else {
                 
                 setTimeout(flipOver, 1500);
+
                 
-                if (actualPlayer == player1) {
-                    actualPlayer = player2;
-                    alert(`Turno de ${player2}`);
-                } else {
-                    actualPlayer = player1;
-                    alert(`Turno de ${player1}`);
-                }
+                // if (actualPlayer == player1) {
+                //     actualPlayer = player2;
+                //     alert(`${player2} es tu turno`);
+                // } else {
+                //     actualPlayer = player1;
+                //     alert(`${player1} es tu turno`);
+                // }
     
             }
         }
@@ -168,8 +180,20 @@ function flipOver() {
     flippedOneCard.style.pointerEvents = 'auto';
     flippedTwoCard.style.pointerEvents = 'auto';
 
+    setTimeout(assignTurn, 1000);
+
 }
 
+
+function assignTurn() {
+    if (actualPlayer == player1) {
+        actualPlayer = player2;
+        alert(`${player2} es tu turno`);
+    } else {
+        actualPlayer = player1;
+        alert(`${player1} es tu turno`);
+    }
+}
 
 function matched() {
     
@@ -226,5 +250,15 @@ function shuffleCards() {
 
         cardsFront[pos1].setAttribute('src', path);
         cardsFront[pos2].setAttribute('src', path);
+    }
+}
+
+function goBack() {
+    quiting = confirm(`
+    Deseas abandonar la página?
+    (se perderá toda la información)`);
+
+    if (quiting) {
+        window.location.href = "./index.html";
     }
 }

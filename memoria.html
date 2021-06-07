@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Memoria</title>
+    <meta http-equiv="ScreenOrientation" content="autoRotate:disabled">
+
+    <title>Memoria</title>
 
     <link rel="stylesheet" href="./styles/normalize.css">
     <link rel="stylesheet" href="./styles/memoria.css">
     <link rel="stylesheet" href="./styles/mediaMemoria.css">
+
+    <script src="https://kit.fontawesome.com/1a73436153.js" crossorigin="anonymous"></script>
+
     <script src="./scripts/memoria.js"></script>
 </head>
 <body>
     <div id="grill" class="gridContainer">
-        <div id="back" class="bar">back</div>
+        <div id="back" class="bar">
+            <a class="back" href="#"><i class="fas fa-arrow-left"></i></a>
+        </div>
         <div id="player1" class="bar">p1</div>
         <div id="player2" class="bar">p2</div>
 
