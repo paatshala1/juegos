@@ -12,34 +12,36 @@ setTimeout(createElements, 1500);
 
 function createElements() {
     
-    getPlayers();
-
-    grill = document.getElementById('grill');
-    cards = document.getElementsByClassName('card');
-    cardsBack = document.getElementsByClassName('backCard');
-    cardsFront = document.getElementsByClassName('frontCard');
-
-    for (let i = 0; i < cards.length; i++) {
-        window['jsC' + i] = cards[i];
-        window['jsB' + i] = cardsBack[i];
-        window['jsF' + i] = cardsFront[i];
-        
-        window['jsC' + i].addEventListener('click', select);
-        
-    }
+    // letsBegin = confirm(`Iniciamos?`);
     
-    shuffled = [];
-    shuffleCards();
-
+    // if (letsBegin) {
+        
+        grill = document.getElementById('grill');
+        cards = document.getElementsByClassName('card');
+        cardsBack = document.getElementsByClassName('backCard');
+        cardsFront = document.getElementsByClassName('frontCard');
+        
+        for (let i = 0; i < cards.length; i++) {
+            window['jsC' + i] = cards[i];
+            window['jsB' + i] = cardsBack[i];
+            window['jsF' + i] = cardsFront[i];
+            
+            window['jsC' + i].addEventListener('click', select);
+            
+        }
+        
+        // shuffled = [];
+        shuffleCards();
+        
+    // } else {
+    
+    //     window.location.href = "./index.html";   
+    
+    // }
 }
-
+    
 
 function getPlayers() {
-    
-    letsBegin = confirm(`Iniciamos?`);
-    
-    if (letsBegin) {
-        
         player1 = prompt('Nombre de jugador 1:');
         player2 = prompt('Nombre de jugador 2:');
         actualPlayer = player1;
@@ -47,6 +49,7 @@ function getPlayers() {
         // TRUCO PARA QUE DE TIEMPO A QUE CARGUEN ELEMENTOS Y SE CREEN TODOS LOS OBJETOS js PARA LOS HTML
         alert(`
         Perfecto...iniciemos!!!
+
         El primer turno es de ${player1}
         `);
         
@@ -56,26 +59,33 @@ function getPlayers() {
         namePlayer2 = document.getElementById('player2');
         scorePlayer2 = document.getElementById('player2Points');
 
-        namePlayer1.textContent = player1;
-        scorePlayer1.textContent = '0';
+        setPlayersNames();
+        setPlayersInitialScores();
+
+        // namePlayer1.textContent = player1;
+        // scorePlayer1.textContent = '0';
         
-        namePlayer2.textContent = player2;
-        scorePlayer2.textContent = '0';
+        // namePlayer2.textContent = player2;
+        // scorePlayer2.textContent = '0';
+}
 
 
-        
-    } else {
+function setPlayersNames() {
+    namePlayer1.textContent = player1;    
+    namePlayer2.textContent = player2;
+}
 
-        window.location.href = "./index.html";   
 
-    }
+function setPlayersInitialScores() {   
+    scorePlayer1.textContent = '0';
+    scorePlayer2.textContent = '0';
 }
 
 
 function iniciar(event) {
     updateSize();
 
-    // createElements();
+    getPlayers();
 
     btn = document.getElementById('btn');
     btn.addEventListener('click', restart);
@@ -83,13 +93,19 @@ function iniciar(event) {
     back = document.getElementById('back');
     back.addEventListener('click', goBack);
 
+    initialSettings();
+    // flippedCards = 0;
+    // pairs = 0;
+    // pairsPlayer1 = 0;
+    // pairsPlayer2 = 0;
+}
 
 
+function initialSettings() {
     flippedCards = 0;
     pairs = 0;
     pairsPlayer1 = 0;
     pairsPlayer2 = 0;
-
 }
 
 
@@ -103,7 +119,31 @@ function updateSize() {
 
 
 function restart() {
-    confirm('Deseas iniciar un juego nuevo');
+    let reset = confirm('Deseas iniciar un juego nuevo');
+    if (reset) {
+        createElements();
+        initialSettings();
+        setPlayersInitialScores();
+        initialVisibility();
+
+        let samePlayers = confirm('Continuan los mismos jugadores?');
+        if (!samePlayers) {
+            getPlayers();
+        } 
+    }
+}
+
+
+function initialVisibility() {
+    for (let i = 0; i < cards.length; i++) {
+        window['jsC' + i].style.pointerEvents = 'auto';
+        
+        window['jsB' + i].style.visibility = 'visible';
+        window['jsB' + i].style.transform = 'perspective(600px) rotateY(0deg)';
+        
+        window['jsF' + i].style.visibility = 'visible';
+        window['jsF' + i].style.transform = 'perspective(600px) rotateY(-180deg)';                
+    }
 }
 
 
@@ -173,7 +213,6 @@ function select(event) {
 function flip(myPos) {
 
     window['jsB' + myPos].style.transform = 'perspective(600px) rotateY(180deg)';
-    // window['jsB' + myPos].style.MozUserSelect = 'none';
 
     window['jsF' + myPos].style.transform = 'perspective(600px) rotateY(0deg)';
 
@@ -240,6 +279,7 @@ function winner() {
 }
 
 function shuffleCards() {
+    shuffled = [];
     qtyCards = cards.length;
     qtyPairs = qtyCards / 2;
     
