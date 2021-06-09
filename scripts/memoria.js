@@ -1,3 +1,5 @@
+
+
 window.addEventListener('load', iniciar);
 window.addEventListener('resize', updateSize);
 
@@ -11,45 +13,55 @@ var grill, shuffled;
 setTimeout(createElements, 1500);
 
 function createElements() {
-    
-    // letsBegin = confirm(`Iniciamos?`);
-    
-    // if (letsBegin) {
-        
-        grill = document.getElementById('grill');
-        cards = document.getElementsByClassName('card');
-        cardsBack = document.getElementsByClassName('backCard');
-        cardsFront = document.getElementsByClassName('frontCard');
-        
-        for (let i = 0; i < cards.length; i++) {
-            window['jsC' + i] = cards[i];
-            window['jsB' + i] = cardsBack[i];
-            window['jsF' + i] = cardsFront[i];
+
             
-            window['jsC' + i].addEventListener('click', select);
-            
-        }
-        
-        // shuffled = [];
-        shuffleCards();
-        
-    // } else {
+    grill = document.getElementById('grill');
+    cards = document.getElementsByClassName('card');
+    cardsBack = document.getElementsByClassName('backCard');
+    cardsFront = document.getElementsByClassName('frontCard');
     
-    //     window.location.href = "./index.html";   
+    for (let i = 0; i < cards.length; i++) {
+        window['jsC' + i] = cards[i];
+        window['jsB' + i] = cardsBack[i];
+        window['jsF' + i] = cardsFront[i];
+        
+        window['jsC' + i].addEventListener('click', select);
+        
+    }
     
-    // }
+    shuffleCards();
 }
     
 
 function getPlayers() {
-        player1 = prompt('Nombre de jugador 1:');
-        player2 = prompt('Nombre de jugador 2:');
+    try {
+
+        do {
+            player1 = prompt('Nombre jugador 1');
+        } 
+        while (!player1.length > 0);
+    }
+    catch(e) {
+        noNames();
+    }
+
+    try {
+        do {
+            player2 = prompt('Nombre jugador 2');
+        }
+        while (player2.length < 1);
+    }
+    catch(e) {
+        noNames();
+    }
+
+    if ( (isLetter(player1)) && (isLetter(player2)) ) {
         actualPlayer = player1;
         
         // TRUCO PARA QUE DE TIEMPO A QUE CARGUEN ELEMENTOS Y SE CREEN TODOS LOS OBJETOS js PARA LOS HTML
         alert(`
         Perfecto...iniciemos!!!
-
+        
         El primer turno es de ${player1}
         `);
         
@@ -58,17 +70,25 @@ function getPlayers() {
         
         namePlayer2 = document.getElementById('player2');
         scorePlayer2 = document.getElementById('player2Points');
-
+        
         setPlayersNames();
         setPlayersInitialScores();
-
-        // namePlayer1.textContent = player1;
-        // scorePlayer1.textContent = '0';
-        
-        // namePlayer2.textContent = player2;
-        // scorePlayer2.textContent = '0';
+    } else {
+        noNames();
+    }        
 }
 
+
+function isLetter(str) {
+    return /^[a-zA-Z()]+$/.test(str);
+}
+
+
+function noNames() {
+    alert('No se puede jugar sin nombres de jugadores');
+    window.location.href = "./index.html";
+}
+    
 
 function setPlayersNames() {
     namePlayer1.textContent = player1;    
@@ -83,6 +103,13 @@ function setPlayersInitialScores() {
 
 
 function iniciar(event) {
+    // swal.fire({
+    //     title: 'Bienvenido',
+    //     text: 'Nombre de jugador',
+    //     input: 'text',
+    //     inputPlaceholder: 'nombre'
+    // });
+
     updateSize();
 
     getPlayers();
@@ -94,10 +121,6 @@ function iniciar(event) {
     back.addEventListener('click', goBack);
 
     initialSettings();
-    // flippedCards = 0;
-    // pairs = 0;
-    // pairsPlayer1 = 0;
-    // pairsPlayer2 = 0;
 }
 
 
@@ -204,23 +227,17 @@ function select(event) {
     
             }
         }
-        
-        
     }
 }
 
 
 function flip(myPos) {
-
     window['jsB' + myPos].style.transform = 'perspective(600px) rotateY(180deg)';
-
     window['jsF' + myPos].style.transform = 'perspective(600px) rotateY(0deg)';
-
 }
 
 
 function flipOver() {
-
     flippedCards = 0;
 
     flippedOneBack.style.transform = 'perspective(600px) rotateY(0deg)';
@@ -233,7 +250,6 @@ function flipOver() {
     flippedTwoCard.style.pointerEvents = 'auto';
 
     setTimeout(assignTurn, 1000);
-
 }
 
 
@@ -252,7 +268,6 @@ function assignTurn() {
 }
 
 function matched() {
-    
     flippedOneBack.style.visibility = 'hidden';
     flippedTwoBack.style.visibility = 'hidden';
 
@@ -265,7 +280,6 @@ function matched() {
 
 
 function winner() {
-    
     if (pairsPlayer1 == pairsPlayer2) {
         alert(`
         Hubo un empate!!!
@@ -275,7 +289,6 @@ function winner() {
     } else {
         alert(`Felicidades ${player2} has ganado`);
     }
-    
 }
 
 function shuffleCards() {
