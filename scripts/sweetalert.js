@@ -1,5 +1,5 @@
-// swal.fire({
-//     title: 'Bienvenido',
-//     text: 'Vamos a jugar',
+Swal.fire({
+    title: 'Bienvenido',
+    text: 'Vamos a jugar',
 
-// });
+});

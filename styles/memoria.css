@@ -4,6 +4,10 @@ body {
     background-color: #bbf;
 }
 
+.swalTitle {
+    font-size: 3rem;
+    text-shadow: 3px 3px 5px;
+}
 
 
 .gridContainer {
@@ -88,7 +92,7 @@ body {
     grid-column: 6 / 7;
     height: calc(var(--vh) * 7);
     font-size: 2rem;
-    background-color: #55f;
+    background-color: #255891;
     color: #ddf;
     border: none;
     border-radius: 0.5rem;

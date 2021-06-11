@@ -32,24 +32,72 @@ function createElements() {
     shuffleCards();
 }
     
-
-function getPlayers() {
+/* LA OBTENCIÓN DE LOS NOMBRES DE LOS JUGADORES SON DIFERENTES, PARA VER AMBAS FORMAS DE OBTENER EL VALOR DE LA PROMESA */
+async function getPlayers() {
     try {
+        // let {value} = await Swal.fire({
+        await Swal.fire({
+            title: 'Este es el primer jugador(a)',
+            text: 'Ingresa tu nombre',
+            input: 'text',
+            inputPlaceholder: 'Nombre',
+            backdrop: true,
+            showCancelButton: true,
+            // cancelButtonColor: '#a30000',
+            cancelButtonText: 'Salir, no jugaré',
+            allowOutsideClick: false,
+            confirmButtonColor: '#255891',
+            confirmButtonText: 'Ingresar',
+            inputValidator: (value) => {
+            // // console.log('🚀 ~ getPlayers ~ value', value);
+                if (!value) {
+                    return 'Debes ingresar tu nombre para poder jugar'
+                } 
+            }
+        })
 
-        do {
-            player1 = prompt('Nombre jugador 1');
-        } 
-        while (!player1.length > 0);
+        .then( (result) => {
+            if (result.dismiss === Swal.DismissReason.cancel) {
+                window.location.href = "./index.html";;
+            } else {
+                player1 = result.value;
+            }
+        })
     }
+
     catch(e) {
         noNames();
     }
 
     try {
-        do {
-            player2 = prompt('Nombre jugador 2');
-        }
-        while (player2.length < 1);
+        await Swal.fire({
+            title: 'Este es el segundo jugador(a)',
+            text: 'Ingresa tu nombre',
+            input: 'text',
+            inputPlaceholder: 'Nombre',
+            backdrop: true,
+            showCancelButton: true,
+            // cancelButtonColor: '#a30000',
+            cancelButtonText: 'Salir, no jugaré',
+            allowOutsideClick: false,
+            confirmButtonColor: '#255891',
+            confirmButtonText: 'Ingresar',
+            inputValidator: (value) => {
+            // // console.log('🚀 ~ getPlayers ~ value', value);
+                if (!value) {
+                    return 'Debes ingresar tu nombre para poder jugar'
+                }
+            }
+        })
+        
+        .then( (result) => {
+            // // console.log('🚀 ~ .then ~ result', result);
+            if (result.dismiss === Swal.DismissReason.cancel) {
+                window.location.href = "./index.html";
+            } else {
+            player2 = result.value;
+            }
+        })
     }
     catch(e) {
         noNames();
@@ -59,11 +107,16 @@ function getPlayers() {
         actualPlayer = player1;
         
         // TRUCO PARA QUE DE TIEMPO A QUE CARGUEN ELEMENTOS Y SE CREEN TODOS LOS OBJETOS js PARA LOS HTML
-        alert(`
-        Perfecto...iniciemos!!!
+        Swal.fire({
+            title: `Listos...iniciemos!
+            El primer turno es de ${player1}`,
+            showConfirmButton: false,
+            customClass: {
+                title: 'swalTitle',
+            },
+            timer: 1500
+        });
         
-        El primer turno es de ${player1}
-        `);
         
         namePlayer1 = document.getElementById('player1');
         scorePlayer1 = document.getElementById('player1Points');
@@ -78,14 +131,19 @@ function getPlayers() {
     }        
 }
 
-
+/* EXPRESIÓN REGULAR (falta estudiarlas, esto lo saqué de StackOverflow) */
 function isLetter(str) {
-    return /^[a-zA-Z()]+$/.test(str);
+    return /^[a-zA-Z]+$/.test(str);/* Le quité los paréntesis luego de Z pero dentro de [], era así [a-zA-Z()] */
 }
 
 
-function noNames() {
-    alert('No se puede jugar sin nombres de jugadores');
+async function noNames() {
+    await Swal.fire({
+        title: 'No se puede jugar sin nombres de jugadores válidos',
+        text: 'Regresemos a la pantalla inicial',
+        timer: 2000
+    });
+
     window.location.href = "./index.html";
 }
     
@@ -103,12 +161,6 @@ function setPlayersInitialScores() {
 
 
 function iniciar(event) {
-    // swal.fire({
-    //     title: 'Bienvenido',
-    //     text: 'Nombre de jugador',
-    //     input: 'text',
-    //     inputPlaceholder: 'nombre'
-    // });
 
     updateSize();
 
@@ -172,8 +224,13 @@ function initialVisibility() {
 
 function select(event) {
     if (flippedCards >= 2) {
-
-        alert('No puedes seleccionar más de dos tarjetas');
+        Swal.fire({
+            icon: 'info',
+            title: 'Error de selección',
+            text: 'No se pueden seleccionar más de cartas por turno',
+            showConfirmButton: false,
+            timer: 1400,
+        })
 
     } else {
 
@@ -212,8 +269,6 @@ function select(event) {
                 setTimeout(matched, 1000);
                 flippedCards = 0;
 
-
-
                 if ((pairsPlayer1 + pairsPlayer2) == 12) {
 
                     setTimeout(winner, 1200);
@@ -223,7 +278,7 @@ function select(event) {
 
             } else {
                 
-                setTimeout(flipOver, 1500);
+                setTimeout(flipOver, 1600);
     
             }
         }
@@ -256,14 +311,21 @@ function flipOver() {
 function assignTurn() {
     if (actualPlayer == player1) {
         actualPlayer = player2;
-        alert(`
-        ${player2},
-         es tu turno`);
-    } else {
+        Swal.fire({
+            title: `${player2}... es tu turno`,
+            showConfirmButton: false,
+            timer: 1000,
+            // timerProgressBar: true
+        });
+
+    } else {    
         actualPlayer = player1;
-        alert(`
-        ${player1},
-         es tu turno`);
+        Swal.fire({
+            title: `${player1}... es tu turno`,
+            showConfirmButton: false,
+            timer: 1000,
+            // timerProgressBar: true
+        });
     }
 }
 
@@ -275,19 +337,27 @@ function matched() {
     flippedTwoFront.style.transform = 'perspective(600px) rotateY(90deg)';
 
     pairs++;
-    console.log(pairs);
+    // console.log('🚀 ~ matched ~ pairs', pairs);
 }
 
 
 function winner() {
     if (pairsPlayer1 == pairsPlayer2) {
-        alert(`
-        Hubo un empate!!!
-        tendrán que jugar el desempate`)
+        Swal.fire({
+            title: 'Empatados!!',
+            text: 'Tendrán que jugar el desempate'
+        });
+
     } else if (pairsPlayer1 > pairsPlayer2) {
-        alert(`Felicidades ${player1} has ganado`);
+        Swal.fire({
+            title: `Tenemos un ganador(a)!`,
+            text: `${player1} has ganado, felicidades`
+        });
     } else {
-        alert(`Felicidades ${player2} has ganado`);
+        Swal.fire({
+            title: `Tenemos un ganador(a)!`,
+            text: `${player2} has ganado, felicidades`
+        });
     }
 }
 
@@ -298,25 +368,25 @@ function shuffleCards() {
     
     do {
         myRadom = Math.round(Math.random() * ((qtyCards - 1) + 0));
-        // console.log('🚀 ~ shuffleCards ~ myRadom', myRadom);
+        // // // console.log('🚀 ~ shuffleCards ~ myRadom', myRadom);
         
         if (shuffled.includes(myRadom)) {
             continue;
         } else {
             shuffled.push(myRadom);
-            // console.log('🚀 ~ shuffleCards ~ shuffled', shuffled);
+            // // // console.log('🚀 ~ shuffleCards ~ shuffled', shuffled);
         }
     
     } while (shuffled.length < 24);
     
     for (let i = 0; i < shuffled.length; i+=2) {
         path = `./img/Frozen/fzn${i/2+1}.jpeg`;
-        // console.log('🚀 ~ shuffleCards ~ path', path);
+        // // // console.log('🚀 ~ shuffleCards ~ path', path);
 
         pos1 = shuffled[i];
-        // console.log('🚀 ~ shuffleCards ~ pos1', pos1);
+        // // // console.log('🚀 ~ shuffleCards ~ pos1', pos1);
         pos2 = shuffled[i+1];
-        // console.log('🚀 ~ shuffleCards ~ pos2', pos2);
+        // // // console.log('🚀 ~ shuffleCards ~ pos2', pos2);
 
         cardsFront[pos1].setAttribute('src', path);
         cardsFront[pos2].setAttribute('src', path);
