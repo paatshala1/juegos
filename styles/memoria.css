@@ -15,9 +15,9 @@ body {
     display: grid;
     margin: calc(var(--vh) * 1);
     background-color: #bbf;
-    grid-template-columns:  repeat(6, calc(var(--vw) * 16));
-    grid-template-rows: 10% repeat(4, calc(var(--vh) * 22.1));
-    gap: 0.4rem;
+    grid-template-columns:  repeat(6, calc(var(--vw) * 15.8));
+    grid-template-rows: calc(var(--vh) * 8) repeat(4, calc(var(--vh) * 21.1));
+    gap: calc(var(--vh) * 1.4);
 }
 
 
@@ -30,8 +30,8 @@ body {
 .back {
     position: absolute;
     width: 4rem;
-    height: 4rem;
-    top: 1%;
+    height: calc(var(--vw) * 10);
+    top: calc(var(--vw) * 0.4);
     left: 2.5%;
     text-align: center;
     font-size: 3rem;
@@ -104,8 +104,8 @@ body {
 
 
 .card {
-    width: calc(var(--vw) * 16);
-    height: calc(var(--vh) * 22.1);
+    width: calc(var(--vw) * 15.8);
+    height: calc(var(--vh) * 21.1);
     overflow: hidden;
     position: relative;
     border-radius: 0.5rem;
