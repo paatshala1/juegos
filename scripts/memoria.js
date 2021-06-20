@@ -1,4 +1,4 @@
-
+// import {goBack} from './modules/general.mjs';
 
 window.addEventListener('load', iniciar);
 window.addEventListener('resize', updateSize);

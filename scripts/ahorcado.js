@@ -1,10 +1,9 @@
 window.addEventListener('load', iniciar);
 window.addEventListener('resize', updateSize);
 
-var wrongs, rights, counter, wrd, letters, writtenLetters, positions, imgNumber, imgNumberNext, coverNumber
-var hangMoves, myInterval
-
-
+var wrongs, rights, counter, wrd, letters, writtenLetters, positions, imgNumber, imgNumberNext, coverNumber;
+var hangMoves, myInterval;
+var back;
 
 
 function initialSetting() {
@@ -21,7 +20,6 @@ function initialSetting() {
     hangMoves = 0;
     myInterval = null;
 }
-
 
 
 function iniciar(event) {
@@ -60,8 +58,11 @@ function iniciar(event) {
     inputWrd = document.getElementById('start__word');
     inputWrd.value = null;
     hang = document.getElementById('hangImg');
-}
 
+    back = document.getElementById('back');
+    back.addEventListener('click', goBack);
+
+}
 
 
 function begin() {
@@ -84,12 +85,10 @@ function begin() {
 }
 
 
-
 function go() {
 
     if (inputWrd.value.length > 1) {
 
-        
         changeImg();
         
         btnGo.setAttribute('hidden', 'true');
@@ -121,13 +120,13 @@ function go() {
     } else {
         inputWrd.value = null;
         inputWrd.focus();
-        alert(`
-        Valor incorrecto
-        Tu palabra de tener un
-        mínimo de dos letras`)
+        Swal.fire({
+            title : 'Valor incorrecto',
+            text: 'Tu palabra debe tener un mínimo de dos letras ',
+            icon: 'error'
+        })
     }
 }
-
 
 
 function trying() {
@@ -135,20 +134,29 @@ function trying() {
     let letter = null;
 
     if (inputWrd.value.length != 1) {
-        alert(`
-        Valor inválido,
-        debe ser una letra`);
+        inputWrd.focus();
+        Swal.fire({
+            title: 'Dato vacío',
+            text: 'Debes ingresar un caracter (letra)',
+            icon: 'error'
+        });
+
     } else {
         counter++;
         letter = inputWrd.value.toLowerCase();
         letters.push(letter);
         // console.log('🚀 ~ trying ~ letters', letters);
         
-        
         if (wrd.includes(letter)) {
 
             if (writtenLetters.includes(letter)) {
-                alert(`Letra "${letter}" acertada previamente`);
+                inputWrd.focus();
+                Swal.fire({
+                    title: 'Letra repetida',
+                    text: `la letra "${letter}" ya la acertastes antes...`,
+                    icon: 'info'
+                });
+
             } else {   
                 writtenLetters.push(letter);
                 rights++;
@@ -183,29 +191,25 @@ function trying() {
     inputWrd.focus();
     
     if (wrongs >= 10) {
-        btnTry.setAttribute('hidden', 'true');
-        inputWrd.removeAttribute('placeholder');
-        btnReset.focus();
-
+        finished();
         divHanged.removeAttribute('hidden');
         myInterval = setInterval(hanging, 210);
 
-        // alert(`
-        // Lo lamento!! Perdiste
-        // Agotaste tus ${wrongs} fallos.
         
         // Aciertos: ${rights}
         // Errores: ${wrongs}`);
     } else if (positions.length >= (wrd.length)) {
-            alert(`
-            Felicidades!!!
-            Has adivinado: ${wrd}
-            Juega de nuevo`);
-            reset();
-        }
+
+        finished();
+        Swal.fire({
+            title: 'FELICIDADES',
+            text: `Has adivinado la palabra "${wrd}"`,
+            icon: 'success',
+            position: 'bottom'
+        });
+    }
 
 }
-
 
 
 function reset() {
@@ -271,9 +275,17 @@ function hanging() {
     activeHanging.style.opacity = 1;
     if (hangMoves == 7) {
         clearInterval(myInterval);
-        alert(`
-        Lo sentimos...
-        intenta de nuevo`);
+        setTimeout(_ => {
+            Swal.fire({
+                title: 'TE HAN AHORCADO',
+                text: `Lamento que hayas fallecido, pero agotaste tus ${wrongs} intentos`,
+                position: 'bottom'
+            })
+        }, 1000);
+
+        // alert(`
+        // Lo sentimos...
+        // intenta de nuevo`);
     }
 }
 
@@ -296,4 +308,33 @@ function updateSize() {
     // alert(`
     // vw: ${actualVw}
     // vh: ${actualVh}`);
+}
+
+
+function finished() {
+    btnTry.setAttribute('hidden', 'true');
+    inputWrd.removeAttribute('placeholder');
+    btnReset.focus();
+}
+
+
+async function goBack() {
+
+    let quitting = await Swal.fire({
+        title: 'Deseas abandonar el juego?',
+        text: '(se perderá toda el avance)',
+        icon: 'question',
+        showCancelButton: true,
+        cancelButtonText: 'No, continuaré en el juego',
+        confirmButtonText: 'Sí, deseo salir'
+    })
+
+    if (quitting.isConfirmed){
+        goMainPage();
+    }
+}
+
+
+function goMainPage() {
+    window.location.href = "./index.html";
 }
