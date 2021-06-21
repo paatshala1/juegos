@@ -13,6 +13,7 @@ h1 {
     background-color: var(--gris2);
     padding-bottom: calc(var(--vh) * 1);
     font-size: 2rem;
+    transition-delay: 200;
 }
 
 .back {
@@ -43,6 +44,7 @@ h1 {
     grid-template-columns: 1fr;
     grid-template-rows: calc(var(--vh) * 8) calc(var(--vh) * 65) calc(var(--vh) * 10) 1fr;
     margin: 0 auto;
+    transition-delay: 200;
     }
 
 .hang {
