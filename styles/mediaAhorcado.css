@@ -66,6 +66,15 @@
         grid-template-rows: calc(var(--vh) * 8) calc(var(--vh) * 65) calc(var(--vh) * 10) 1fr;
         margin: 0 auto;
         }
+
+    .hang {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        position: relative;
+        margin: 2% 2%;
+        max-height: calc((var(--vh) * 100));
+        overflow: hidden;
+    }
     
 }
 
