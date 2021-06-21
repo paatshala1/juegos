@@ -11,7 +11,7 @@ h1 {
     line-height: calc(var(--vh) * 8);
     margin: 0 auto;
     background-color: var(--gris2);
-    /* padding: 1rem; */
+    padding-bottom: calc(var(--vh) * 1);
     font-size: 2rem;
 }
 
@@ -41,7 +41,7 @@ h1 {
     display: grid;
     height: calc(var(--vh) * 100);
     grid-template-columns: 1fr;
-    grid-template-rows: calc(var(--vh) * 8) calc(var(--vh) * 50) calc(var(--vh) * 10) 1fr;
+    grid-template-rows: calc(var(--vh) * 8) calc(var(--vh) * 65) calc(var(--vh) * 10) 1fr;
     margin: 0 auto;
     }
 
