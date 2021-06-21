@@ -41,7 +41,7 @@ h1 {
     display: grid;
     height: calc(var(--vh) * 100);
     grid-template-columns: 1fr;
-    grid-template-rows: calc(var(--vh) * 10) calc(var(--vh) * 45) calc(var(--vh) * 10) 1fr;
+    grid-template-rows: calc(var(--vh) * 10) calc(var(--vh) * 75) calc(var(--vh) * 10) 1fr;
     margin: 0 auto;
     }
 
@@ -50,7 +50,7 @@ h1 {
     grid-row: 2 / 3;
     position: relative;
     margin: 2% 2%;
-    max-height: calc((var(--vh) * 100) - 1rem);
+    max-height: calc((var(--vh) * 100));
     overflow: hidden;
 }
 
