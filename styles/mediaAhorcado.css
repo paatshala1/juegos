@@ -43,6 +43,11 @@
         grid-row: 3 / 4;
     }
 
+    .back {
+        top: calc(var(--vh) * 3);
+        left: calc(var(--vw) * 0.5);
+    }
+
 }
 
 

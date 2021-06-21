@@ -11,7 +11,7 @@ h1 {
     line-height: calc(var(--vh) * 8);
     margin: 0 auto;
     background-color: var(--gris2);
-    padding: 1rem;
+    /* padding: 1rem; */
     font-size: 2rem;
 }
 
@@ -19,8 +19,8 @@ h1 {
     position: absolute;
     width: 4rem;
     height: 4rem;
-    top: 0.5rem;
-    left: 0.3rem;
+    top: calc(var(--vh) * 2);
+    left: calc(var(--vw) * 2);
     text-align: center;
     font-size: 3rem;
     margin: 0,5rem;
@@ -34,14 +34,14 @@ h1 {
 }
 
 .myHeader {
-    height: calc(var(--vh) * 10);
+    height: calc(var(--vh) * 5);
 }
 
 .align {
     display: grid;
     height: calc(var(--vh) * 100);
     grid-template-columns: 1fr;
-    grid-template-rows: calc(var(--vh) * 10) calc(var(--vh) * 65) calc(var(--vh) * 10) 1fr;
+    grid-template-rows: calc(var(--vh) * 8) calc(var(--vh) * 50) calc(var(--vh) * 10) 1fr;
     margin: 0 auto;
     }
 
