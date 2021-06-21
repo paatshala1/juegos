@@ -47,7 +47,25 @@
         top: calc(var(--vh) * 3);
         left: calc(var(--vw) * 0.5);
     }
-
 }
 
+
+@media screen and (orientation: portrait) {
+    h1 {
+        line-height: calc(var(--vh) * 8);
+        margin: 0 auto;
+        background-color: var(--gris2);
+        padding-bottom: calc(var(--vh) * 1);
+        font-size: 2rem;
+    }
+
+    .align {
+        display: grid;
+        height: calc(var(--vh) * 100);
+        grid-template-columns: 1fr;
+        grid-template-rows: calc(var(--vh) * 8) calc(var(--vh) * 65) calc(var(--vh) * 10) 1fr;
+        margin: 0 auto;
+        }
+    
+}
 
