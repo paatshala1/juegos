@@ -1,5 +1,6 @@
 window.addEventListener('load', iniciar);
 window.addEventListener('resize', updateSize);
+window.screen.orientation.addEventListener('change', updateSize);
 
 var wrongs, rights, counter, wrd, letters, writtenLetters, positions, imgNumber, imgNumberNext, coverNumber;
 var hangMoves, myInterval;
