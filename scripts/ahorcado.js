@@ -1,5 +1,5 @@
 window.addEventListener('load', iniciar);
-// window.addEventListener('resize', updateSize);
+window.addEventListener('resize', updateSize);
 window.screen.orientation.addEventListener('change', updateSize);
 
 var wrongs, rights, counter, wrd, letters, writtenLetters, positions, imgNumber, imgNumberNext, coverNumber;
@@ -307,6 +307,10 @@ function updateSize() {
 
     document.documentElement.style.setProperty('--vh', `${actualVh}px`);
     document.documentElement.style.setProperty('--vw', `${actualVw}px`);
+
+    if (window.screen.orientation == 'landscape') {
+        window.screen.orientation.lock('landscape');
+    }
 
     // alert(`
     // vw: ${actualVw}
