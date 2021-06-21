@@ -24,11 +24,12 @@ function initialSetting() {
 
 function iniciar(event) {
 
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
+    // const vw = window.innerWidth;
+    // const vh = window.innerHeight;
+
     // const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     // const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    alert(`Ancho: ${vw} x Alto: ${vh}`);
+    // alert(`Ancho: ${vw} x Alto: ${vh}`);
 
     // let resolution = window.devicePixelRatio;
     // alert(resolution);
