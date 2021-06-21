@@ -24,26 +24,15 @@ function initialSetting() {
 
 function iniciar(event) {
 
-    // const vw = window.innerWidth;
-    // const vh = window.innerHeight;
-    // const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-    // const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-    // alert(`${vw} x ${vh}`);
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+    alert(`Ancho: ${vw} x Alto: ${vh}`);
 
     // let resolution = window.devicePixelRatio;
     // alert(resolution);
   
-    var orientation = (screen.orientation || {}).type || screen.mozOrientation || screen.msOrientation;
-
-    if (orientation === "landscape-primary") {
-      alert("That looks good.");
-    } else if (orientation === "landscape-secondary") {
-      alert("Mmmh... the screen is upside down!");
-    } else if (orientation === "portrait-secondary" || orientation === "portrait-primary") {
-      alert("Mmmh... you should rotate your device to landscape");
-    } else if (orientation === undefined) {
-      alert("The orientation API isn't supported in this browser :(");
-    }
     
     updateSize();
 
