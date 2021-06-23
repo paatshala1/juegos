@@ -62,19 +62,36 @@ body {
 }
 
 
-#p1Div {
+#p1Div, #p2Div,
+#p1DivAcum, #p2DivAcum {
     display: flex;
     justify-content: space-around;
     grid-row: 1;
-    grid-column: 2 / 4;
+}
+
+
+#p1DivAcumm {
+    grid-column: 2 / 3;
+}
+
+
+ #p2DivAcum {
+    grid-column: 3 / 4;
+ }
+
+
+.currentPoints {
+    color: #255891;
+    background-color: #bde3ea;
+}
+
+#p1Div {
+    grid-column: 4 / 5;
 }
 
 
 #p2Div {
-    display: flex;
-    justify-content: space-around;
-    grid-row: 1;
-    grid-column: 4 / 6;
+    grid-column: 5 / 6;
 }
 
 #player1 {

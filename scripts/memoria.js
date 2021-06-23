@@ -3,7 +3,8 @@
 window.addEventListener('load', iniciar);
 window.addEventListener('resize', updateSize);
 
-var btn, back, namePlayer1, namePlayer2, scorePlayer1, scorePlayer2;
+var btn, back;
+var namePlayer1, namePlayer2, scorePlayer1, scorePlayer2, namePlayer1Acum, namePlayer2Acum, scorePlayer1Acum, scorePlayer2Acum, p1Acum, p2Acum;
 var flippedCards, flippedOneCard,flippedTwoCard, flippedOneFront, flippedTwoFront, pairs;
 var dismiss, actualPlayer, player1, player2, turn, pairsPlayer1, pairsPlayer2;
 var grill, shuffled;
@@ -140,12 +141,18 @@ async function getPlayers() {
                    
             namePlayer1 = document.getElementById('player1');
             scorePlayer1 = document.getElementById('player1Points');
+            namePlayer1Acum = document.getElementById('player1Acum');
+            scorePlayer1Acum = document.getElementById('player1PointsAcum');
+
             
             namePlayer2 = document.getElementById('player2');
             scorePlayer2 = document.getElementById('player2Points');
-            
+            namePlayer2Acum = document.getElementById('player2Acum');
+            scorePlayer2Acum = document.getElementById('player2PointsAcum');
+
             setPlayersNames();
             setPlayersInitialScores();
+            setPlayersInitialAcumScores();
         } else {
             noNames();
         }        
@@ -189,14 +196,25 @@ async function noNames() {
     
 
 function setPlayersNames() {
-    namePlayer1.textContent = player1;    
+    namePlayer1.textContent = player1;
+    namePlayer1Acum.textContent = `Acum ${player1}`;
+
     namePlayer2.textContent = player2;
+    namePlayer2Acum.textContent = `Acum ${player2}`;
 }
 
 
-function setPlayersInitialScores() {   
+function setPlayersInitialScores() { 
     scorePlayer1.textContent = '0';
     scorePlayer2.textContent = '0';
+}
+
+
+function setPlayersInitialAcumScores() {
+    p1Acum = 0;
+    p2Acum = 0;
+    scorePlayer1Acum.textContent = '0';
+    scorePlayer2Acum.textContent = '0';
 }
 
 
@@ -222,6 +240,8 @@ function initialSettings() {
     pairsPlayer1 = 0;
     pairsPlayer2 = 0;
     dismiss = false;
+    // p1Acum = 0;
+    // p2Acum = 0;
 }
 
 
@@ -259,6 +279,7 @@ async function restart() {
         })
 
         if (samePlayers.dismiss === Swal.DismissReason.cancel) {
+            setPlayersInitialAcumScores();
             getPlayers();
         }
     }
@@ -269,11 +290,33 @@ function initialVisibility() {
     for (let i = 0; i < cards.length; i++) {
         window['jsC' + i].style.pointerEvents = 'auto';
         
-        window['jsB' + i].style.visibility = 'visible';
         window['jsB' + i].style.transform = 'perspective(600px) rotateY(0deg)';
+        window['jsB' + i].style.visibility = 'visible';
         
-        window['jsF' + i].style.visibility = 'visible';
         window['jsF' + i].style.transform = 'perspective(600px) rotateY(-180deg)';                
+        window['jsF' + i].style.visibility = 'visible';
+    }
+}
+
+
+async function newGame() {
+    aNewGame = await Swal.fire({
+        title: 'Desean jugar una vez más?',
+        icon: 'question',
+        showCancelButton: true,
+        cancelButtonText: 'No...creo que no',
+        confirmButtonText: 'Sí, jugaremos otro'
+    });
+
+    if (aNewGame.isConfirmed) {
+        await Swal.fire({
+            title: 'Iniciemos',
+            text: `El primer turno será de ${actualPlayer}`
+        });
+        createElements();
+        initialSettings();
+        setPlayersInitialScores();
+        initialVisibility();
     }
 }
 
@@ -387,6 +430,7 @@ function assignTurn() {
     }
 }
 
+
 function matched() {
     flippedOneBack.style.visibility = 'hidden';
     flippedTwoBack.style.visibility = 'hidden';
@@ -399,27 +443,40 @@ function matched() {
 }
 
 
-function winner() {
+async function winner() {
     if (pairsPlayer1 == pairsPlayer2) {
-        Swal.fire({
+        await Swal.fire({
             title: 'Empatados!!',
             text: 'Tendrán que jugar el desempate'
         });
 
     } else if (pairsPlayer1 > pairsPlayer2) {
-        Swal.fire({
+        await Swal.fire({
             title: `Tenemos un ganador(a)!`,
             text: `${player1} has ganado, felicidades`
+        })
+        .then(r => {
+            p1Acum++;
+            scorePlayer1Acum.textContent = p1Acum;
         });
+
     } else {
-        Swal.fire({
+        await Swal.fire({
             title: `Tenemos un ganador(a)!`,
             text: `${player2} has ganado, felicidades`
+        })
+        .then(r => {
+            p2Acum++;
+            scorePlayer2Acum.textContent = p2Acum;
         });
+
     }
+
+    newGame();
 }
 
 function shuffleCards() {
+
     shuffled = [];
     qtyCards = cards.length;
     qtyPairs = qtyCards / 2;
@@ -445,11 +502,15 @@ function shuffleCards() {
         // console.log('🚀 ~ shuffleCards ~ pos1', pos1);
         pos2 = shuffled[i+1];
         // console.log('🚀 ~ shuffleCards ~ pos2', pos2);
-
+        
+        // cardsFront[pos1].style.visibility = 'hidden';
         cardsFront[pos1].setAttribute('src', path);
+        
+        // cardsFront[pos2].style.visibility = 'hidden';
         cardsFront[pos2].setAttribute('src', path);
     }
 }
+
 
 async function goBack() {
 
@@ -471,3 +532,4 @@ async function goBack() {
 function goMainPage() {
     window.location.href = "./index.html";
 }
+
