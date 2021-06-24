@@ -57,6 +57,7 @@ async function getPlayers() {
             // cancelButtonColor: '#a30000',
             cancelButtonText: 'Salir, no jugaré',
             allowOutsideClick: false,
+            allowEscapeKey: false,
             confirmButtonColor: '#255891',
             confirmButtonText: 'Ingresar',
             inputValidator: (value) => {
@@ -96,6 +97,7 @@ async function getPlayers() {
                 // cancelButtonColor: '#a30000',
                 cancelButtonText: 'Salir, no jugaré',
                 allowOutsideClick: false,
+                allowEscapeKey: false,
                 confirmButtonColor: '#255891',
                 confirmButtonText: 'Ingresar',
                 inputValidator: (value) => {
@@ -265,10 +267,10 @@ async function restart() {
     });
 
     if (reset.isConfirmed) {
+        await initialVisibility();
         createElements();
         initialSettings();
         setPlayersInitialScores();
-        initialVisibility();
         
         let samePlayers = await Swal.fire({
             icon: 'question',
@@ -287,15 +289,19 @@ async function restart() {
 
 
 function initialVisibility() {
-    for (let i = 0; i < cards.length; i++) {
-        window['jsC' + i].style.pointerEvents = 'auto';
-        
-        window['jsB' + i].style.transform = 'perspective(600px) rotateY(0deg)';
-        window['jsB' + i].style.visibility = 'visible';
-        
-        window['jsF' + i].style.transform = 'perspective(600px) rotateY(-180deg)';                
-        window['jsF' + i].style.visibility = 'visible';
-    }
+    return new Promise((resolve, reject) => {
+        for (let i = 0; i < cards.length; i++) {
+            window['jsC' + i].style.pointerEvents = 'auto';
+            
+            window['jsB' + i].style.transform = 'perspective(600px) rotateY(0deg)';
+            window['jsB' + i].style.visibility = 'visible';
+            
+            window['jsF' + i].style.transform = 'perspective(600px) rotateY(-180deg)';                
+            window['jsF' + i].style.visibility = 'visible';
+            window['jsF' + i].style.transitionDuration = '0s';
+        }
+        resolve();
+    })
 }
 
 
@@ -494,21 +500,28 @@ function shuffleCards() {
     
     } while (shuffled.length < 24);
     
-    for (let i = 0; i < shuffled.length; i+=2) {
-        path = `./img/Frozen/fzn${i/2+1}.jpeg`;
-        // console.log('🚀 ~ shuffleCards ~ path', path);
-
-        pos1 = shuffled[i];
-        // console.log('🚀 ~ shuffleCards ~ pos1', pos1);
-        pos2 = shuffled[i+1];
-        // console.log('🚀 ~ shuffleCards ~ pos2', pos2);
-        
-        // cardsFront[pos1].style.visibility = 'hidden';
-        cardsFront[pos1].setAttribute('src', path);
-        
-        // cardsFront[pos2].style.visibility = 'hidden';
-        cardsFront[pos2].setAttribute('src', path);
-    }
+    return new Promise((resolve, reject) => {
+        for (let i = 0; i < shuffled.length; i+=2) {
+            path = `./img/Frozen/fzn${i/2+1}.jpeg`;
+            // console.log('🚀 ~ shuffleCards ~ path', path);
+    
+            pos1 = shuffled[i];
+            // console.log('🚀 ~ shuffleCards ~ pos1', pos1);
+            pos2 = shuffled[i+1];
+            // console.log('🚀 ~ shuffleCards ~ pos2', pos2);
+            
+            cardsFront[pos1].setAttribute('src', path);
+            cardsFront[pos2].setAttribute('src', path);
+        }
+        resolve();
+    })
+    .then(_ =>{
+        for (let x = 0; x < shuffled.length; x++) {
+            cardsFront[x].style.transitionDuration = '0.5s';
+            
+        }
+    })
+    
 }
 
 
