@@ -20,8 +20,8 @@ function createElements() {
     
     swalTurns = Swal.mixin({
         showConfirmButton: false,
-        timer: 700,
-        position: 'top',
+        timer: 800,
+        // position: 'bottom',
         toast: true,
         // allowOutsideClick: true /* Los toast no aceptan esta propiedad */
         // timerProgressBar: true
@@ -405,7 +405,7 @@ function flipOver() {
     flippedOneCard.style.pointerEvents = 'auto';
     flippedTwoCard.style.pointerEvents = 'auto';
 
-    setTimeout(assignTurn, 1000);
+    setTimeout(assignTurn, 300);
 }
 
 
