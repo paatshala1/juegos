@@ -1,13 +1,17 @@
+import { goBack, goMainPage } from '../modules/modules.js';
+
 window.addEventListener('load', iniciar);
 
 
 function iniciar(ev) {
-    fragmentoOrigen = new DocumentFragment();
-    fragmentoDestino = new DocumentFragment();
+    let fragmentoOrigen = new DocumentFragment();
+    let fragmentoDestino = new DocumentFragment();
     
-    imagen = document.createElement('img');
+    let imagen = document.createElement('img');
     imagen.setAttribute('id', 'imagen');
-    imagen.setAttribute('src', '../img/Puzzle/olafPierdeCabeza.jpg');
+    imagen.setAttribute('src', './img/Puzzle/olafPierdeCabeza.jpg');
+
+    back.addEventListener('click', goBack);
 
     let piezas = [];
     
@@ -23,9 +27,9 @@ function iniciar(ev) {
 
 
     piezas.map(x => {
-        myImg = document.createElement('img');
+        let myImg = document.createElement('img');
         myImg.setAttribute('class', 'origen__img');
-        myImg.setAttribute('src', `../img/Puzzle/${x}.png`);
+        myImg.setAttribute('src', `./img/Puzzle/${x}.png`);
         myImg.addEventListener('dragstart', (ev) => ev.dataTransfer.setData('myUrl', ev.target.src));
         myImg.addEventListener('dragend', quitar);
         fragmentoOrigen.appendChild(myImg);        
@@ -33,7 +37,7 @@ function iniciar(ev) {
 
 
     piezas.map(y => {
-        myImg = document.createElement('img');
+        let myImg = document.createElement('img');
         myImg.setAttribute('class', 'destino__img');
         // myImg.setAttribute('src', './Puzzle/neutro.png');
         myImg.addEventListener('dragstart', (ev) => ev.dataTransfer.setData('myUrl', ev.target.src));
@@ -45,11 +49,11 @@ function iniciar(ev) {
     })
 
 
-    origen = document.createElement('div');
+    let origen = document.createElement('div');
     origen.setAttribute('class', 'origen');
     origen.appendChild(fragmentoOrigen);
 
-    destino = document.createElement('div');
+    let destino = document.createElement('div');
     destino.setAttribute('class', 'destino');
     destino.appendChild(fragmentoDestino);
 
@@ -66,6 +70,7 @@ const sobre = (ev) => {
         ev.preventDefault();
     }
 }
+
 
 const soltar = (ev) => {
     let data = ev.dataTransfer.getData('myUrl');

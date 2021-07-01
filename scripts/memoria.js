@@ -1,20 +1,20 @@
-// import {goBack} from './modules/general.mjs';
+import { goBack, goMainPage } from '../modules/modules.js';
 
 window.addEventListener('load', iniciar);
 window.addEventListener('resize', updateSize);
 
-var btn, back;
-var namePlayer1, namePlayer2, scorePlayer1, scorePlayer2, namePlayer1Acum, namePlayer2Acum, scorePlayer1Acum, scorePlayer2Acum, p1Acum, p2Acum;
-var flippedCards, flippedOneCard,flippedTwoCard, flippedOneFront, flippedTwoFront, pairs;
-var dismiss, actualPlayer, player1, player2, turn, pairsPlayer1, pairsPlayer2;
-var grill, shuffled;
+let btn, back;
+let namePlayer1, namePlayer2, scorePlayer1, scorePlayer2, namePlayer1Acum, namePlayer2Acum, scorePlayer1Acum, scorePlayer2Acum, p1Acum, p2Acum;
+let flippedCards, flippedOneCard,flippedTwoCard, flippedOneFront, flippedTwoFront, pairs;
+let dismiss, actualPlayer, player1, player2, turn, pairsPlayer1, pairsPlayer2;
+let grill, shuffled;
 
-var swalTurns;
+let swalTurns;
 
 
 
 // TIMEOUT PARA QUE DE TIEMPO A QUE CARGUE LA PÁGINA ANTES DE CREAR ELEMENTOS
-setTimeout(createElements, 1500);
+setTimeout(createElements, 2000);
 
 function createElements() {
     
@@ -525,24 +525,24 @@ function shuffleCards() {
 }
 
 
-async function goBack() {
+// async function goBack() {
 
-    let quitting = await Swal.fire({
-        title: 'Deseas abandonar el juego?',
-        text: '(se perderá toda el avance)',
-        icon: 'question',
-        showCancelButton: true,
-        cancelButtonText: 'No, continuaré en el juego',
-        confirmButtonText: 'Sí, deseo salir'
-    })
+//     let quitting = await Swal.fire({
+//         title: 'Deseas abandonar el juego?',
+//         text: '(se perderá toda el avance)',
+//         icon: 'question',
+//         showCancelButton: true,
+//         cancelButtonText: 'No, continuaré en el juego',
+//         confirmButtonText: 'Sí, deseo salir'
+//     })
 
-    if (quitting.isConfirmed){
-        goMainPage();
-    }
-}
+//     if (quitting.isConfirmed){
+//         goMainPage();
+//     }
+// }
 
 
-function goMainPage() {
-    window.location.href = "./index.html";
-}
+// function goMainPage() {
+//     window.location.href = "./index.html";
+// }
 
