@@ -3,13 +3,13 @@ import { goBack, goMainPage } from '../modules/modules.js';
 window.addEventListener('load', iniciar);
 window.addEventListener('resize', updateSize);
 
-let btn, back;
-let namePlayer1, namePlayer2, scorePlayer1, scorePlayer2, namePlayer1Acum, namePlayer2Acum, scorePlayer1Acum, scorePlayer2Acum, p1Acum, p2Acum;
-let flippedCards, flippedOneCard,flippedTwoCard, flippedOneFront, flippedTwoFront, pairs;
-let dismiss, actualPlayer, player1, player2, turn, pairsPlayer1, pairsPlayer2;
-let grill, shuffled;
+var btn, back;
+var namePlayer1, namePlayer2, scorePlayer1, scorePlayer2, namePlayer1Acum, namePlayer2Acum, scorePlayer1Acum, scorePlayer2Acum, p1Acum, p2Acum;
+var flippedCards, flippedOneCard,flippedTwoCard, flippedOneFront, flippedOneBack, flippedTwoFront, flippedTwoBack, pairs;
+var dismiss, actualPlayer, player1, player2, turn, pairsPlayer1, pairsPlayer2;
+var grill, shuffled, cards, cardsBack, cardsFront, myRadom;
 
-let swalTurns;
+var swalTurns;
 
 
 
@@ -306,7 +306,7 @@ function initialVisibility() {
 
 
 async function newGame() {
-    aNewGame = await Swal.fire({
+    let aNewGame = await Swal.fire({
         title: 'Desean jugar una vez más?',
         icon: 'question',
         showCancelButton: true,
@@ -484,8 +484,8 @@ async function winner() {
 function shuffleCards() {
 
     shuffled = [];
-    qtyCards = cards.length;
-    qtyPairs = qtyCards / 2;
+    let qtyCards = cards.length;
+    let qtyPairs = qtyCards / 2;
     
     do {
         myRadom = Math.round(Math.random() * ((qtyCards - 1) + 0));
@@ -502,12 +502,12 @@ function shuffleCards() {
     
     return new Promise((resolve, reject) => {
         for (let i = 0; i < shuffled.length; i+=2) {
-            path = `./img/Frozen/fzn${i/2+1}.jpeg`;
+            let path = `./img/Frozen/fzn${i/2+1}.jpeg`;
             // console.log('🚀 ~ shuffleCards ~ path', path);
     
-            pos1 = shuffled[i];
+            let pos1 = shuffled[i];
             // console.log('🚀 ~ shuffleCards ~ pos1', pos1);
-            pos2 = shuffled[i+1];
+            let pos2 = shuffled[i+1];
             // console.log('🚀 ~ shuffleCards ~ pos2', pos2);
             
             cardsFront[pos1].setAttribute('src', path);
