@@ -315,6 +315,7 @@ async function newGame() {
     });
 
     if (aNewGame.isConfirmed) {
+        await initialVisibility();
         await Swal.fire({
             title: 'Iniciemos',
             text: `El primer turno será de ${actualPlayer}`
@@ -322,7 +323,6 @@ async function newGame() {
         createElements();
         initialSettings();
         setPlayersInitialScores();
-        initialVisibility();
     }
 }
 
