@@ -1,5 +1,7 @@
 import { goBack, goMainPage } from '../modules/modules.js';
 
+var success;
+
 window.addEventListener('load', iniciar);
 
 
@@ -30,7 +32,7 @@ function iniciar(ev) {
         let myImg = document.createElement('img');
         myImg.setAttribute('class', 'origen__img');
         myImg.setAttribute('src', `./img/Puzzle/${x}.png`);
-        myImg.addEventListener('dragstart', (ev) => ev.dataTransfer.setData('myUrl', ev.target.src));
+        myImg.addEventListener('dragstart', mover);
         myImg.addEventListener('dragend', quitar);
         fragmentoOrigen.appendChild(myImg);        
     })
@@ -63,6 +65,10 @@ function iniciar(ev) {
 }
 
 
+const mover = (ev) => {
+    ev.dataTransfer.setData('myUrl', ev.target.src)
+}
+
 const sobre = (ev) => {
     let actualSrc = ev.target.getAttribute('src');
     
@@ -80,13 +86,16 @@ const soltar = (ev) => {
         ev.preventDefault();
         ev.target.setAttribute('src', data);
     }
+
+    success = true;
     // ev.dataTransfer.clearData('myUrl');
 }
 
 
 const quitar = (ev) => {
-    if (ev.dataTransfer.dropEffect != 'none') {
+    if (ev.dataTransfer.dropEffect != 'none' && success == true) {
         ev.target.setAttribute('src', '../img/Puzzle/neutro.png');
+        success = false;
         // console.log(ev.dataTransfer.dropEffect);
     }
 
