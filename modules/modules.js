@@ -20,3 +20,12 @@ export function goMainPage() {
     window.location.href = "./index.html";
 }
 
+
+export function updateSize() {
+    let actualVw = window.innerWidth * 0.01;
+    let actualVh = window.innerHeight * 0.01;
+
+    document.documentElement.style.setProperty('--vh', `${actualVh}px`);
+    document.documentElement.style.setProperty('--vw', `${actualVw}px`);
+}
+

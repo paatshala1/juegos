@@ -12,6 +12,22 @@
 
 .myHeader {
     display: flex;
+    height: calc(var(--vh) * 6);
+    }
+
+
+#back {
+    position: absolute;
+    width: 4rem;
+    font-size: 3rem;
+    text-align: end;
+    top: calc(var(--vw) * 0.4);
+}
+
+
+#label {
+    flex-grow: 1;
+    text-align: center;
 }
 
 #imagen {

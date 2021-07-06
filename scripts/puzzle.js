@@ -1,11 +1,14 @@
-import { goBack, goMainPage } from '../modules/modules.js';
+import { goBack, goMainPage, updateSize } from '../modules/modules.js';
 
 var success;
 
 window.addEventListener('load', iniciar);
+window.addEventListener('resize', updateSize);
 
 
 function iniciar(ev) {
+    updateSize();
+
     let fragmentoOrigen = new DocumentFragment();
     let fragmentoDestino = new DocumentFragment();
     

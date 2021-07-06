@@ -1,4 +1,4 @@
-import { goBack, goMainPage } from '../modules/modules.js';
+import { goBack, goMainPage, updateSize } from '../modules/modules.js';
 
 window.addEventListener('load', iniciar);
 window.addEventListener('resize', updateSize);
@@ -247,13 +247,13 @@ function initialSettings() {
 }
 
 
-function updateSize() {
-    let actualVw = window.innerWidth * 0.01;
-    let actualVh = window.innerHeight * 0.01;
+// function updateSize() {
+//     let actualVw = window.innerWidth * 0.01;
+//     let actualVh = window.innerHeight * 0.01;
 
-    document.documentElement.style.setProperty('--vh', `${actualVh}px`);
-    document.documentElement.style.setProperty('--vw', `${actualVw}px`);
-}
+//     document.documentElement.style.setProperty('--vh', `${actualVh}px`);
+//     document.documentElement.style.setProperty('--vw', `${actualVw}px`);
+// }
 
 
 async function restart() {
